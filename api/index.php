@@ -18,7 +18,7 @@ if (!$versions) {
 if (isset($versions->{$url['path'][0]})) {
 
   $project = $url['path'][0];
-  $version = $versions->{$url['path'][0]};
+  $version = $versions->{$project};
 
   $response = array( $project => $version );
 } else {
