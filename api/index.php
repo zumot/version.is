@@ -20,6 +20,8 @@ if (!$versions) {
   apc_store('versions.json:'.$cache_buster, $versions);
 }
 
+print_r($versions);
+
 if ($versions[$url[0]]) {
   $response = array(
     $url[0] => $versions[$url[0]]
