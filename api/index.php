@@ -1,6 +1,6 @@
 <pre><?php
 $url = parse_url($_SERVER['REQUEST_URI']);
-$url['path'] = explode('/', ltrim(rtrim($url['path'], '/'), '/'));
+$url['path'] = explode('/', ltrim($url['path'], '/'));
 parse_str($url['query'], $url['query']);
 
 $cache_buster = floor(time() / 100) * 100;
