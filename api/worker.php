@@ -3,7 +3,13 @@
  * Version Fetcher                                                            *
  ******************************************************************************/
 
+$gist_id = '3691351'; // Gist to load versions from
+
 $versions = array(); // Placeholder array
+
+/******************************************************************************
+ * Dynamicly fetch versions                                                   *
+ ******************************************************************************/
 
 // Read list of sources from version_sources.json
 // Second parameter gives us an assoc array instead of an object.
@@ -29,6 +35,23 @@ foreach ($sources as $project => $source) {
 
   $versions[$project] = $version;
 }
+
+/******************************************************************************
+ * Get versions manually from gist                                            *
+ ******************************************************************************/
+
+
+
+$gist = file_get_contents('https://api.github.com/gists/'.$gist_id);
+$gist = json_decode($gist, true);
+
+foreach ($gist as $project => $version) {
+  $versions[$project] = $version;
+}
+
+/******************************************************************************
+ * Write result to file cache                                                 *
+ ******************************************************************************/
 
 $result = json_encode($versions);
 file_put_contents('versions.json', $result);
