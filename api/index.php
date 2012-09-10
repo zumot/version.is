@@ -7,14 +7,13 @@ $url['path'] = explode('/', ltrim($url['path'], '/'));
 parse_str($url['query'], $url['query']);
 
 // Cache buster to refresh APC cache every 100 secs.
-$cache_buster = floor(time() / 10) * 10;
+$cache_buster = floor(time() / 100) * 100;
 
 // Try to fetch from APC
 $versions = apc_fetch('versions.json:'.$cache_buster);
 
 // If not in cache - then fetch and store
 if (!$versions) {
-  echo 'get content' . PHP_EOL;
   $versions = json_decode(file_get_contents('versions.json'), true);
   apc_store('versions.json:'.$cache_buster, $versions);
 }
@@ -32,9 +31,9 @@ if (isset($versions[$project])) {
 // If not has data
 else {
   $response = array(
+    'error' => 'No match found for \''.$project.'\'',
     'project' => $project,
-    'version' => '',
-    'error' => 'No match found for \''.$project.'\''
+    'version' => ''
   );
 }
 
