@@ -10,4 +10,6 @@ foreach ($sources as $project => $source) {
   $versions[$project] = $info['version'];
 }
 
-file_put_contents('versions.json', json_encode($versions));
+$result = json_encode($versions);
+file_put_contents('versions.json', $result);
+echo '<pre>'.$result;
