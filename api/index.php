@@ -23,19 +23,24 @@ if ($url['query']) {
  */
 
 /******************************************************************************
- * Getting version info. Reading from APC cache if it exists.                 *
+ * Getting version info. Reading from APC cache if possible.                  *
  ******************************************************************************/
 
-// Cache buster to refresh APC cache every 100 secs.
-$cacheTTL = floor(time() / 100) * 100;
+if (function_exists('apc_fetch')) {
+  // Cache buster to refresh APC cache every 100 secs.
+  $cacheTTL = floor(time() / 100) * 100;
 
-// Try to fetch from APC
-$versions = apc_fetch('versions.json'.$cacheTTL);
+  // Try to fetch from APC
+  $versions = apc_fetch('versions.json'.$cacheTTL);
 
-// If not in cache - then fetch and store
-if (!$versions) {
+  // If not in cache - then fetch and store
+  if (!$versions) {
+    $versions = json_decode(file_get_contents('versions.json'), true);
+    apc_store('versions.json'.$cacheTTL, $versions);
+  }
+} else {
+  // Fallback for non APC-enabled servers
   $versions = json_decode(file_get_contents('versions.json'), true);
-  apc_store('versions.json'.$cacheTTL, $versions);
 }
 
 /******************************************************************************
