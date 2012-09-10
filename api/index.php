@@ -7,6 +7,8 @@ $cache_buster = floor(time() / 100) * 100;
 
 echo $cache_buster . PHP_EOL;
 
+echo $url[0] .PHP_EOL;
+
 $versions = apc_fetch('versions.json:'.$cache_buster);
 
 if (!$versions) {
