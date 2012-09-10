@@ -1,25 +1,49 @@
-/*!  --  style.css  |  Version.is  | v. 0.0.0  |  https://github.com/gustavnikolaj/version.is  --  */
+/*!  --  global.css  |  Version.is  | v. 0.0.0  |  https://github.com/gustavnikolaj/version.is  --  */
+
+/*  --  Variables  --  */
+
+@contrast: #a61414;
+
+/*  --  Function  --  */
+
+//
+//  Image replacement
+//
 
 .ir {
   border: 0;
-  font: 0/0 a;
+  font: ~"0/0" a;
   text-shadow: none;
   color: transparent;
   background-color: transparent;
 }
 
+//
+//  Don't show links for images, or javascript/internal links
+//
+
 @media print {
+
   .ir a:after,
   a[href^="javascript:"]:after,
   a[href^="#"]:after {
     content: "";
   }
+
 }
+
+//
+//  Hide from both screenreaders and browsers: h5bp.com/u
+//
 
 .hidden {
   display: none !important;
   visibility: hidden;
 }
+
+//
+//  Hide only visually, but have it available for screenreaders: h5bp.com/v
+//
 
 .visuallyhidden {
   border: 0;
@@ -31,6 +55,12 @@
   position: absolute;
   width: 1px;
 }
+
+//
+//  Extends the .visuallyhidden class to allow the element to be focusable
+//  when navigated to via the keyboard: h5bp.com/p
+//
+
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
   clip: auto;
@@ -40,9 +70,20 @@
   position: static;
   width: auto;
 }
+
+
+//
+//  Hide visually and from screenreaders, but maintain layout
+//
+
 .invisible {
   visibility: hidden;
 }
+
+//
+//  Clear Fix
+//
+
 .clearfix:after {
   visibility: hidden;
   display: block;
@@ -50,20 +91,26 @@
   content: " ";
   clear: both;
   height: 0;
-}
-.lt-ie7 * html .clearfix {
-  zoom: 1;
-}
-.lt-ie8 *:first-child + html .clearfix {
-  zoom: 1;
-}
+  }
+
+.lt-ie7 * html .clearfix { zoom: 1; }  //  IE6
+.lt-ie8 *:first-child+html .clearfix { zoom: 1; }  //  IE7
 
 /*  --  typography  --  */
+
+//
+//  1. Corrects text resizing oddly in IE 6/7 when body `font-size` is set using
+//    `em` units.
+//  2. Prevents iOS text size adjust after orientation change, without disabling
+//     user zoom.
+//
+
 html {
-  font-size: 100%;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
+  font-size: 100%; //  1.
+  -webkit-text-size-adjust: 100%;  //  2.
+  -ms-text-size-adjust: 100%;  //  2.
 }
+
 html,
 button,
 input,
@@ -83,136 +130,164 @@ body {
   font-size: 100%;
   line-height: 1.5em;
 }
+
+//
+//  Remove text-shadow in selection highlight: h5bp.com/i
+//  These selection declarations have to be separate.
+//  Customize the background color to match your design.
+//
+
 ::-moz-selection {
   background: #b3d4fc;
   text-shadow: none;
 }
+
 ::selection {
   background: #b3d4fc;
   text-shadow: none;
 }
+
+//
+//  Addresses styling for `hidden` attribute not present in IE 7/8/9, Firefox 3,
+//  and Safari 4.
+//  Known issue: no IE 6 support.
+//
+
 [hidden] {
   display: none;
 }
 
+//
+//  Headings
+//  csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css
+//
+
 h1,
 .alpha {
-  padding: 0;
-  font-size: 42px;
-  font-size: 2.625rem;
-  line-height: 42px;
   margin: 0;
-  font-family:  'Helvetica Neue', helvetica, arial sans-serif;
+  padding: 0;
+  font-size: 2.625em;
+  line-height: 1em;
+  font-family: 'Helvetica Neue', Helvetica, Arial sans-serif;
 }
 
 h2,
 .beta {
-  padding: 0;
-  font-size: 30px;
-  font-size: 1.875rem;
-  line-height: 36px;
   margin: 0;
-  font-family:  'Helvetica Neue', helvetica, arial sans-serif;
+  padding: 0;
+  font-size: 1.875em;
+  line-height: 1.2em;
+  font-family: 'Helvetica Neue', Helvetica, Arial sans-serif;
 }
 
 h3,
 .gamma {
-  padding: 0.25em 0.5em;
   margin: 1em 0 0.5em;
-  font-size: 23px;
-  font-size: 1.4375rem;
+  padding: 0.25em 0.5em;
+  font-size: 1.4375em;
   line-height: 24px;
-  font-family:  'Helvetica Neue', helvetica, arial sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial sans-serif;
 }
 
 h4,
 .delta {
-  padding: 0.25em 0.5em;
   margin: 1em 0 0.5em;
-  font-size: 19px;
-  font-size: 1.1875rem;
-  line-height: 24px;
-  font-family:  'Helvetica Neue', helvetica, arial sans-serif;
+  padding: 0.25em 0.5em;
+  font-size: 1.1875em;
+  line-height: 1.2631em;
+  font-family: 'Helvetica Neue', Helvetica, Arial sans-serif;
 }
 
 h5,
 .epsilon {
-  padding: 0;
-  font-size: 19px;
-  font-size: 1.1875rem;
-  line-height: 24px;
   margin: 0;
-  font-family:  'Helvetica Neue', helvetica, arial sans-serif;
+  padding: 0;
+  font-size: 1.1875em;
+  line-height: 1.2631em;
+  font-family: 'Helvetica Neue', Helvetica, Arial sans-serif;
 }
 
 h6,
 .zeta {
-  padding: 0;
-  font-size: 19px;
-  font-size: 1.1875rem;
-  line-height: 24px;
   margin: 0;
-  font-family:  'Helvetica Neue', helvetica, arial sans-serif;
+  padding: 0;
+  font-size: 1.1875em;
+  line-height: 1.2631em;
+  font-family: 'Helvetica Neue', helvetica, arial sans-serif;
 }
 
 p {
-  padding: 0 0 12px 0;
-  padding: 0 0 0.75rem 0;
+  padding: 0 0 0.75em 0;
 }
+
+
+//
+//  For use on text that needs to be smaller than body copy
+//
+
 .deci {
-  font-size: 14px;
-  font-size: 0.875rem;
+  font-size: 0.875em;
 }
+
 small,
 .milli {
-  font-size: 66%;
+  font-size: 66%;  //  Addresses inconsistent and variable font size in all browsers.
   line-height: 1em;
 }
+
 abbr[title] {
   border-bottom: 1px dotted;
 }
+
 @media print {
   abbr[title]:after {
     content: " (" attr(title) ")";
   }
 }
+
+//
+//  Addresses styling not present in IE7/8/9, S5, Chrome
+//
+
 blockquote,
 q {
   quotes: none;
   position: relative;
 }
-blockquote:before,
-q:before {
-  content: url("");
-}
+
 blockquote:after,
 q:after {
-  content: url("");
   position: absolute;
   right: 0;
   bottom: 0;
 }
+
 blockquote {
   font-weight: bold;
   color: #333;
 }
+
 blockquote p {
   font-size: 20px;
   font-size: 1.25rem;
   line-height: 24px;
   line-height: 1.5rem;
 }
+
 cite {
   font-weight: normal;
   font-style: normal;
 }
+
 blockquote cite {
   display: block;
   color: #000;
 }
+
 blockquote cite::before {
   content: '';
 }
+
 @media print {
   pre,
   blockquote {
@@ -220,37 +295,52 @@ blockquote cite::before {
     page-break-inside: avoid;
   }
 }
+
 em {
   font-style: italic;
   font-weight: inherit;
   line-height: inherit;
 }
+
+//
+// Addresses CSS quotes not supported in IE 6/7.
+//
+
 q {
   quotes: none;
 }
+
 q:before,
 q:after {
   content: '';
   content: none;
 }
+
+//
+//  Corrects font family set oddly in IE6, S4/5, Chrome
+//  en.wikipedia.org/wiki/User:Davidgothberg/Test59
+//
+
 pre,
 code,
 kbd,
 samp {
   font-family: monospace, serif;
 }
+
 .lt-ie7 pre,
 .lt-ie7 code,
 .lt-ie7 kbd,
 .lt-ie7 samp {
   font-family: 'Courier New', monospace;
 }
+
 code,
 pre {
   border: 1px solid #e1e1e8;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+      -moz-border-radius: 3px;
+                border-radius: 3px;
   background-color: #f7f7f9;
   color: #a61414;
   font-family: Menlo, Monaco, Andale Mono, "Courier New", Courier, monospace;
@@ -264,8 +354,8 @@ code {
 
 pre {
   display: block;
-  padding: 12px 12px 13px;
   margin: 0 0 25px;
+  padding: 12px 12px 13px;
   line-height: 25px;
   white-space: pre;
   white-space: pre-wrap;
@@ -273,17 +363,21 @@ pre {
 }
 
 kbd {
+  margin: 0 0.25em;
+  padding: 0.3333em 0.6667em;
+  border: 1px solid #e6e6e6;
+  border-bottom: 2px solid #e0e0e0;
+  border-radius: 3px;
+  background-color: #fcfcfc;
   color: #666;
   font-size: 0.875em;
   font-weight: normal;
   line-height: 90%;
-  background-color: #FCFCFC;
-  margin: 0 0.25em;
-  border: 1px solid #E6E6E6;
-  border-bottom: 2px solid #E0E0E0;
-  border-radius: 3px;
-  padding: 0.3333em 0.6667em;
 }
+
+//
+//  Addresses style set to 'bolder' in FF3+, S4/5, Chrome
+//
 
 b,
 strong {
@@ -293,23 +387,44 @@ strong {
   vertical-align: inherit;
 }
 
+//
+//  Addresses styling not present in S5, Chrome
+//
+
 dfn {
   font-style: italic;
 }
+
+//
+//  Hyperlinks
+//
+
+//
+//  Addresses `outline` inconsistency between Chrome and other browsers.
+//
+
 a:focus {
   outline: thin dotted;
 }
+
+//
+//  Improves readability when focused and also mouse hovered in all browsers
+//  people.opera.com/patrickl/experiments/keyboard/test
+//
+
 a:hover,
 a:active {
   outline: 0;
 }
+
 a:link,
 a:visited,
 a:active {
-  color: #a61414;
+  color: @contrast;
   text-decoration: none;
   vertical-align: baseline;
 }
+
 @media print {
   a,
   a:visited {
@@ -319,20 +434,33 @@ a:active {
     content: " (" attr(href) ")";
   }
 }
+
 a:hover {
   text-decoration: none;
 }
+
+//
+//  Addresses styling not present in IE6/7/8/9
+//
+
 mark {
   background: #ff0;
   color: #000;
 }
+
+//
+//  Prevents sub and sup affecting line-height in all browsers
+//  gist.github.com/413930
+//
+
 sub,
 sup {
+  position: relative;
   font-size: 75%;
   line-height: 0;
-  position: relative;
   vertical-align: baseline;
 }
+
 sup {
   top: -0.5em;
 }
@@ -340,10 +468,19 @@ sub {
   bottom: -0.25em;
 }
 
-.page-header { text-align: center; }
+.page-header {
+  text-align: center;
+}
+
 .page-header-title,
-.page-header-subtitle { display: inline; font-size: 1.5em; }
-.page-header-subtitle { font-weight: normal; }
+.page-header-subtitle {
+  display: inline;
+  font-size: 1.5em;
+}
+
+.page-header-subtitle {
+  font-weight: normal;
+}
 
 .section {
   margin-bottom: 1em;

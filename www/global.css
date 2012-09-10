@@ -1,5 +1,6 @@
-/*!  --  style.css  |  Version.is  | v. 0.0.0  |  https://github.com/gustavnikolaj/version.is  --  */
-
+/*!  --  global.css  |  Version.is  | v. 0.0.0  |  https://github.com/gustavnikolaj/version.is  --  */
+/*  --  Variables  --  */
+/*  --  Function  --  */
 .ir {
   border: 0;
   font: 0/0 a;
@@ -7,7 +8,6 @@
   color: transparent;
   background-color: transparent;
 }
-
 @media print {
   .ir a:after,
   a[href^="javascript:"]:after,
@@ -15,12 +15,10 @@
     content: "";
   }
 }
-
 .hidden {
   display: none !important;
   visibility: hidden;
 }
-
 .visuallyhidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -57,7 +55,6 @@
 .lt-ie8 *:first-child + html .clearfix {
   zoom: 1;
 }
-
 /*  --  typography  --  */
 html {
   font-size: 100%;
@@ -94,74 +91,59 @@ body {
 [hidden] {
   display: none;
 }
-
 h1,
 .alpha {
-  padding: 0;
-  font-size: 42px;
-  font-size: 2.625rem;
-  line-height: 42px;
   margin: 0;
-  font-family:  'Helvetica Neue', helvetica, arial sans-serif;
+  padding: 0;
+  font-size: 2.625em;
+  line-height: 1em;
+  font-family: 'Helvetica Neue', Helvetica, Arial sans-serif;
 }
-
 h2,
 .beta {
-  padding: 0;
-  font-size: 30px;
-  font-size: 1.875rem;
-  line-height: 36px;
   margin: 0;
-  font-family:  'Helvetica Neue', helvetica, arial sans-serif;
+  padding: 0;
+  font-size: 1.875em;
+  line-height: 1.2em;
+  font-family: 'Helvetica Neue', Helvetica, Arial sans-serif;
 }
-
 h3,
 .gamma {
-  padding: 0.25em 0.5em;
   margin: 1em 0 0.5em;
-  font-size: 23px;
-  font-size: 1.4375rem;
+  padding: 0.25em 0.5em;
+  font-size: 1.4375em;
   line-height: 24px;
-  font-family:  'Helvetica Neue', helvetica, arial sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial sans-serif;
 }
-
 h4,
 .delta {
-  padding: 0.25em 0.5em;
   margin: 1em 0 0.5em;
-  font-size: 19px;
-  font-size: 1.1875rem;
-  line-height: 24px;
-  font-family:  'Helvetica Neue', helvetica, arial sans-serif;
+  padding: 0.25em 0.5em;
+  font-size: 1.1875em;
+  line-height: 1.2631em;
+  font-family: 'Helvetica Neue', Helvetica, Arial sans-serif;
 }
-
 h5,
 .epsilon {
-  padding: 0;
-  font-size: 19px;
-  font-size: 1.1875rem;
-  line-height: 24px;
   margin: 0;
-  font-family:  'Helvetica Neue', helvetica, arial sans-serif;
+  padding: 0;
+  font-size: 1.1875em;
+  line-height: 1.2631em;
+  font-family: 'Helvetica Neue', Helvetica, Arial sans-serif;
 }
-
 h6,
 .zeta {
-  padding: 0;
-  font-size: 19px;
-  font-size: 1.1875rem;
-  line-height: 24px;
   margin: 0;
-  font-family:  'Helvetica Neue', helvetica, arial sans-serif;
+  padding: 0;
+  font-size: 1.1875em;
+  line-height: 1.2631em;
+  font-family: 'Helvetica Neue', helvetica, arial sans-serif;
 }
-
 p {
-  padding: 0 0 12px 0;
-  padding: 0 0 0.75rem 0;
+  padding: 0 0 0.75em 0;
 }
 .deci {
-  font-size: 14px;
-  font-size: 0.875rem;
+  font-size: 0.875em;
 }
 small,
 .milli {
@@ -181,13 +163,8 @@ q {
   quotes: none;
   position: relative;
 }
-blockquote:before,
-q:before {
-  content: url("");
-}
 blockquote:after,
 q:after {
-  content: url("");
   position: absolute;
   right: 0;
   bottom: 0;
@@ -257,34 +234,30 @@ pre {
   font-size: 0.75em;
   font-weight: 600;
 }
-
 code {
   padding: 3px 4px;
 }
-
 pre {
   display: block;
-  padding: 12px 12px 13px;
   margin: 0 0 25px;
+  padding: 12px 12px 13px;
   line-height: 25px;
   white-space: pre;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-
 kbd {
+  margin: 0 0.25em;
+  padding: 0.3333em 0.6667em;
+  border: 1px solid #e6e6e6;
+  border-bottom: 2px solid #e0e0e0;
+  border-radius: 3px;
+  background-color: #fcfcfc;
   color: #666;
   font-size: 0.875em;
   font-weight: normal;
   line-height: 90%;
-  background-color: #FCFCFC;
-  margin: 0 0.25em;
-  border: 1px solid #E6E6E6;
-  border-bottom: 2px solid #E0E0E0;
-  border-radius: 3px;
-  padding: 0.3333em 0.6667em;
 }
-
 b,
 strong {
   font-style: inherit;
@@ -292,7 +265,6 @@ strong {
   line-height: inherit;
   vertical-align: inherit;
 }
-
 dfn {
   font-style: italic;
 }
@@ -328,9 +300,9 @@ mark {
 }
 sub,
 sup {
+  position: relative;
   font-size: 75%;
   line-height: 0;
-  position: relative;
   vertical-align: baseline;
 }
 sup {
@@ -339,16 +311,20 @@ sup {
 sub {
   bottom: -0.25em;
 }
-
-.page-header { text-align: center; }
+.page-header {
+  text-align: center;
+}
 .page-header-title,
-.page-header-subtitle { display: inline; font-size: 1.5em; }
-.page-header-subtitle { font-weight: normal; }
-
+.page-header-subtitle {
+  display: inline;
+  font-size: 1.5em;
+}
+.page-header-subtitle {
+  font-weight: normal;
+}
 .section {
   margin-bottom: 1em;
 }
-
 .section-title {
   border: 1px solid #ccc;
   border-width: 1px 0;
