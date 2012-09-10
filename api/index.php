@@ -31,7 +31,7 @@ if ($project) {
   if (isset($versions[$project])) {
     $response = array(
       'project' => $project,
-      'version' => $versions[$project][0]
+      'version' => $versions[$project]
     );
   } 
   // If not has data
