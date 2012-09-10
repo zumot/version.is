@@ -7,12 +7,12 @@ $cache_buster = floor(time() / 100) * 100;
 
 echo $url['path'][0];
 
-//$versions = apc_fetch('versions.json:'.$cache_buster);
+$versions = apc_fetch('versions.json:'.$cache_buster);
 
 if (!$versions) {
   echo 'get content' . PHP_EOL;
   $versions = json_decode(file_get_contents('versions.json'));
-  //apc_store('versions.json:'.$cache_buster, $versions);
+  apc_store('versions.json:'.$cache_buster, $versions);
 }
 
 if (isset($versions->{$url['path'][0]})) {
