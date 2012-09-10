@@ -55,5 +55,6 @@ if ($format == 'json') {
     echo json_encode($response);
   }
 } else {
+  header("Content-Type: text/plain");
   echo ($response['version']) ? $response['version'] : $response['error'];
 }
