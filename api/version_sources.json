@@ -1,0 +1,5 @@
+{
+  "jquery" : "https://raw.github.com/component/jquery/c105f5c95a5de10dd0a453b1fc6d963c217d3064/component.json",
+  "backbone" : "https://raw.github.com/documentcloud/backbone/master/package.json",
+  "underscore" : "https://raw.github.com/documentcloud/underscore/460adf59b50ca13effe7ea12bf1c8b3eb16353ca/package.json"
+}
