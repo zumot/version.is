@@ -22,7 +22,7 @@ foreach ($sources as $project => $source) {
 
   $filename = end(explode('/', $source));
   
-  if ($filename == 'package.json') {
+  if (($filename == 'package.json') || ($filename == 'component.json')) {
     $info = json_decode(file_get_contents($source), true);
     $version = $info['version'];
   }
