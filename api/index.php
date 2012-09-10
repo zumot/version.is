@@ -15,6 +15,19 @@ $versions = apc_fetch('versions.json:'.$cache_buster);
 
 if (!$versions) {
   echo 'get content' . PHP_EOL;
+
+  $versions = json_decode(file_get_contents('versions.json'));
+  apc_store('versions.json:'.$cache_buster, $versions);
+}
+
+if ($versions[$url[0]]) {
+  $response = array(
+    $url[0] => $versions[$url[0]]
+  );
+} else {
+  $response = array(
+    'error' => 'No match found'
+  );
 }
 
 echo json_encode($response);
