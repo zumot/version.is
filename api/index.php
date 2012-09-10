@@ -5,6 +5,8 @@ parse_str($url['query'], $url['query']);
 
 $cache_buster = floor(time() / 100) * 100;
 
+echo $url['path'][0];
+
 $versions = apc_fetch('versions.json:'.$cache_buster);
 
 if (!$versions) {
