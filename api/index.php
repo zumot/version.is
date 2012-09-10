@@ -5,7 +5,7 @@ print_r($url);
 
 echo PHP_EOL;
 
-$cache_buster = number_format(time() / 100, 0) * 100;
+$cache_buster = floor(time() / 100) * 100;
 
 echo $cache_buster . PHP_EOL;
 
