@@ -45,7 +45,7 @@ foreach ($sources as $project => $source) {
 $gist = file_get_contents('https://api.github.com/gists/'.$gist_id);
 $gist = json_decode($gist, true);
 
-foreach ($gist as $project => $version) {
+foreach ($gist['files']['versions.json']['content'] as $project => $version) {
   $versions[$project] = $version;
 }
 
