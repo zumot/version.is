@@ -7,7 +7,7 @@ $url['path'] = explode('/', ltrim($url['path'], '/'));
 parse_str($url['query'], $url['query']);
 
 // Cache buster to refresh APC cache every 100 secs.
-$cache_buster = floor(time() / 100) * 100;
+$cache_buster = floor(time() / 10) * 10;
 
 // Try to fetch from APC
 $versions = apc_fetch('versions.json:'.$cache_buster);
