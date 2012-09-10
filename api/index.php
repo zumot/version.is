@@ -5,10 +5,6 @@ parse_str($url['query'], $url['query']);
 
 $cache_buster = floor(time() / 100) * 100;
 
-echo $cache_buster . PHP_EOL;
-
-echo $url[0] .PHP_EOL;
-
 $versions = apc_fetch('versions.json:'.$cache_buster);
 
 if (!$versions) {
@@ -18,9 +14,9 @@ if (!$versions) {
   apc_store('versions.json:'.$cache_buster, $versions);
 }
 
-if (isset($versions->{$url[0]})) {
+if (isset($versions->{$url['path'][0]})) {
   $response = array(
-    $url[0] => $versions[$url[0]]
+    $url['path'][0] => $versions[$url['path'][0]]
   );
 } else {
   $response = array(
