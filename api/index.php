@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: application/json");
 // Getting the URL
 $url = parse_url($_SERVER['REQUEST_URI']);
 // Exploding the path
