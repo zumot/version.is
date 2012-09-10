@@ -1,4 +1,4 @@
-<?php
+<pre><?php
 // Getting the URL
 $url = parse_url($_SERVER['REQUEST_URI']);
 // Exploding the path
@@ -10,12 +10,13 @@ parse_str($url['query'], $url['query']);
 $cache_buster = floor(time() / 100) * 100;
 
 // Try to fetch from APC
-$versions = apc_fetch('versions.json:'.$cache_buster);
+$versions = apc_fetch('versions.json'.$cache_buster);
 
 // If not in cache - then fetch and store
 if (!$versions) {
+  echo 'fetched'.PHP_EOL;
   $versions = json_decode(file_get_contents('versions.json'), true);
-  apc_store('versions.json:'.$cache_buster, $versions);
+  apc_store('versions.json'.$cache_buster, $versions);
 }
 
 // Project key
