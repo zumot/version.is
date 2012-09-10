@@ -26,28 +26,32 @@ if (!$versions) {
   apc_store('versions.json'.$cacheTTL, $versions);
 }
 
+// If a project is asked for...
+if ($project) {
+  // If has data
+  if (isset($versions[$project])) {
+    $response = array(
+      'project' => $project,
+      'version' => $versions[$project][0]
+    );
+  }
+  // If not has data
+  else {
+    $response = array(
+      'error' => 'No match found for \''.$project.'\'',
+      'project' => $project,
+      'version' => ''
+    );
+  }
 
-// If has data
-if (isset($versions[$project])) {
-  $response = array(
-    'project' => $project,
-    'version' => $versions[$project][0]
-  );
-}
-// If not has data
-else {
-  $response = array(
-    'error' => 'No match found for \''.$project.'\'',
-    'project' => $project,
-    'version' => ''
-  );
-}
-
-// Returning the response
-if ($url['query']['callback']) {
-  // With Callback
-  echo $url['query']['callback'] . '('.json_encode($response).');';
+  // Returning the response
+  if ($url['query']['callback']) {
+    // With Callback
+    echo $url['query']['callback'] . '('.json_encode($response).');';
+  } else {
+    // Without Callback
+    echo json_encode($response);
+  }
 } else {
-  // Without Callback
-  echo json_encode($response);
+  echo json_encode(array('error' => 'Invalid Request'));
 }
