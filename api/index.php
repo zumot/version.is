@@ -5,6 +5,7 @@ $url = parse_url($_SERVER['REQUEST_URI']);
 $url['path'] = explode('/', ltrim($url['path'], '/')); // path to array
 
 $project = $url['path'][0]; // Get project name
+$details = isset($url['path'][1]);
 
 // if querystring is not empty check for a callback
 if ($url['query']) {
@@ -34,24 +35,26 @@ if ($project) {
       'project' => $project,
       'version' => $versions[$project][0]
     );
+
+    if ($details) {
+      $response['link'] = $versions[$project][1];
+    }
   }
   // If not has data
   else {
     $response = array(
-      'error' => 'No match found for \''.$project.'\'',
-      'project' => $project,
-      'version' => ''
+      'error' => 'No match found for \''.$project.'\''
     );
-  }
-
-  // Returning the response
-  if ($url['query']['callback']) {
-    // With Callback
-    echo $url['query']['callback'] . '('.json_encode($response).');';
-  } else {
-    // Without Callback
-    echo json_encode($response);
   }
 } else {
   echo json_encode(array('error' => 'Invalid Request'));
+}
+
+// Returning the response
+if ($url['query']['callback']) {
+  // With Callback
+  echo $url['query']['callback'] . '('.json_encode($response).');';
+} else {
+  // Without Callback
+  echo json_encode($response);
 }
