@@ -1,16 +1,16 @@
 <?php
-header("Content-Type: application/json");
-
 $url = parse_url($_SERVER['REQUEST_URI']);
 $url['path'] = explode('/', ltrim($url['path'], '/')); // path to array
 
 $project = $url['path'][0]; // Get project name
 $callback = false; // Use JSONP-style callback
+$format = 'plaintext';
 
-// if querystring is not empty check for a callback
+// if querystring is not empty check for a callback and format
 if ($url['query']) {
   parse_str($url['query'], $url['query']);
   $callback = filter_var($url['query']['callback'], FILTER_SANITIZE_STRING);
+  $format = filter_var(strtolower($url['query']['format']), FILTER_SANITIZE_STRING);
 }
 
 // Cache buster to refresh APC cache every 100 secs.
@@ -42,11 +42,18 @@ if ($project) {
   $response = array( 'error' => 'Invalid Request' );
 }
 
-// Returning the response
-if ($callback) {
-  // With Callback
-  echo $callback . '('.json_encode($response).');';
+
+if ($format == 'json') {
+  header("Content-Type: application/json");
+
+  // Returning the response
+  if ($callback) {
+    // With Callback
+    echo $callback . '('.json_encode($response).');';
+  } else {
+    // Without Callback
+    echo json_encode($response);
+  }
 } else {
-  // Without Callback
-  echo json_encode($response);
+  echo ($response['version']) ? $response['version'] : $response['error'];
 }
