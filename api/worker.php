@@ -1,11 +1,16 @@
 <?php
+/******************************************************************************
+ * Version Fetcher                                                            *
+ ******************************************************************************/
 
-$versions = array();
+$versions = array(); // Placeholder array
 
+// Read list of sources from version_sources.json
+// Second parameter gives us an assoc array instead of an object.
 $sources = json_decode(file_get_contents('version_sources.json'), true);
 
 foreach ($sources as $project => $source) {
-  $version = 'N/A';
+  $version = 'Not Available'; // Version default value
 
   $filename = end(explode('/', $source));
   
@@ -15,8 +20,9 @@ foreach ($sources as $project => $source) {
   }
 
   if ($filename == 'grunt.js') {
-    // This regex could need some love. 
-    // Returns two matches (both version: 'x.x.x' and x.x.x) - can this be avoided?
+    // TODO: This regex could need some love. 
+    // Returns two matches (both version: 'x.x.x' and x.x.x)
+    // can this be avoided?
     preg_match('/version: \'(.*)\'/', file_get_contents($source), $matches);
     $version = end($matches);
   }
@@ -27,4 +33,4 @@ foreach ($sources as $project => $source) {
 $result = json_encode($versions);
 file_put_contents('versions.json', $result);
 
-echo '<pre>'.$result;
+echo '<pre>'.$result; // Output of the written data
