@@ -19,19 +19,21 @@ if (!$versions) {
   apc_store('versions.json:'.$cache_buster, $versions);
 }
 
+// Project key
 $project = $url['path'][0];
 
+// If has data
 if (isset($versions[$project])) {
-  $version = $versions[$project][0];
-
   $response = array(
     'project' => $project,
-    'version' => $version
+    'version' => $versions[$project][0]
   );
-
-} else {
+}
+// If not has data
+else {
   $response = array(
     'project' => $project,
+    'version' => '',
     'error' => 'No match found for \''.$project.'\''
   );
 }
