@@ -9,14 +9,16 @@ foreach ($sources as $project => $source) {
 
   $filename = end(explode('/', $source));
   
-
   if ($filename == 'package.json') {
     $info = json_decode(file_get_contents($source), true);
     $version = $info['version'];
   }
 
   if ($filename == 'grunt.js') {
-    // Hmm..
+    // This regex could need some love. 
+    // Returns two matches (both version: 'x.x.x' and x.x.x) - can this be avoided?
+    preg_match('/version: \'(.*)\'/', file_get_contents($source), $matches);
+    $version = end($matches);
   }
 
   $versions[$project] = $version;
