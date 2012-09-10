@@ -1,5 +1,7 @@
 <pre><?php
 $url = parse_url($_SERVER['REQUEST_URI']);
+$url['path'] = explode('/', ltrim(rtrim($url['path'], '/'), '/'));
+$url['query'] = parse_str($url['query']);
 
 print_r($url);
 
