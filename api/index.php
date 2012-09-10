@@ -1,9 +1,19 @@
 <?php
+
+
+
+
 $url = parse_url($_SERVER['REQUEST_URI']);
+
 $url['path'] = explode('/', ltrim($url['path'], '/'));
 parse_str($url['query'], $url['query']);
 
+
+
+
 $cache_buster = floor(time() / 100) * 100;
+
+
 
 $versions = apc_fetch('versions.json:'.$cache_buster);
 
@@ -18,11 +28,21 @@ $project = $url['path'][0];
 if (isset($versions[$project])) {
   $version = $versions[$project][0];
 
-  $response = array( $project => $version );
+  $response = array(
+    'project' => $project,
+    'version' => $version
+  );
+
 } else {
   $response = array(
     'error' => 'No match found for \''.$project.'\''
   );
 }
 
-echo json_encode($response);
+if ($url['query']['callback']) {
+  // With Callback
+  echo $url['query']['callback'] . '('.json_encode($response).')';
+} else {
+  // Without Callback
+  echo json_encode($response);
+}
