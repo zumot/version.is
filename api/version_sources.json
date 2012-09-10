@@ -1,7 +1,0 @@
-{
-  "jquery" : "https://raw.github.com/jquery/jquery/master/package.json",
-  "backbone" : "https://raw.github.com/documentcloud/backbone/master/package.json",
-  "underscore" : "https://raw.github.com/documentcloud/underscore/master/package.json",
-  "modernizr" : "https://raw.github.com/Modernizr/Modernizr/master/grunt.js",
-  "grunt" : "https://raw.github.com/cowboy/grunt/master/package.json"
-}

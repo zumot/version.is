@@ -3,7 +3,10 @@
  * Version Fetcher                                                            *
  ******************************************************************************/
 
-$gist_id = '3691351'; // Gist to load versions from
+// Load gist
+$gist_id = '3691351';
+$gist = file_get_contents('https://api.github.com/gists/'.$gist_id);
+$gist = json_decode($gist, true);
 
 $versions = array(); // Placeholder array
 
@@ -11,9 +14,8 @@ $versions = array(); // Placeholder array
  * Dynamicly fetch versions                                                   *
  ******************************************************************************/
 
-// Read list of sources from version_sources.json
 // Second parameter gives us an assoc array instead of an object.
-$sources = json_decode(file_get_contents('version_sources.json'), true);
+$sources = json_decode($gist['files']['sources.json']['content'], true);
 
 foreach ($sources as $project => $source) {
   $version = 'Not Available'; // Version default value
@@ -40,13 +42,9 @@ foreach ($sources as $project => $source) {
  * Get versions manually from gist                                            *
  ******************************************************************************/
 
+$manual = json_decode($gist['files']['versions.json']['content'],true);
 
-
-$gist = file_get_contents('https://api.github.com/gists/'.$gist_id);
-$gist = json_decode($gist, true);
-$gist = json_decode($gist['files']['versions.json']['content'],true);
-
-foreach ($gist as $project => $version) {
+foreach ($manual as $project => $version) {
   $versions[$project] = $version;
 }
 
