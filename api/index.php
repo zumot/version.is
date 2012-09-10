@@ -5,14 +5,12 @@ $url = parse_url($_SERVER['REQUEST_URI']);
 $url['path'] = explode('/', ltrim($url['path'], '/')); // path to array
 
 $project = $url['path'][0]; // Get project name
-$details = isset($url['path'][1]);
+$callback = false; // Use JSONP-style callback
 
 // if querystring is not empty check for a callback
 if ($url['query']) {
   parse_str($url['query'], $url['query']);
   $callback = filter_var($url['query']['callback'], FILTER_SANITIZE_STRING);
-} else {
-  $callback = false;
 }
 
 // Cache buster to refresh APC cache every 100 secs.
@@ -35,25 +33,19 @@ if ($project) {
       'project' => $project,
       'version' => $versions[$project][0]
     );
-
-    if ($details) {
-      $response['link'] = $versions[$project][1];
-    }
-  }
+  } 
   // If not has data
   else {
-    $response = array(
-      'error' => 'No match found for \''.$project.'\''
-    );
+    $response = array( 'error' => "No data found for '$project'" );
   }
 } else {
-  echo json_encode(array('error' => 'Invalid Request'));
+  $response = array( 'error' => 'Invalid Request' );
 }
 
 // Returning the response
-if ($url['query']['callback']) {
+if ($callback) {
   // With Callback
-  echo $url['query']['callback'] . '('.json_encode($response).');';
+  echo $callback . '('.json_encode($response).');';
 } else {
   // Without Callback
   echo json_encode($response);
