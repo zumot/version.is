@@ -22,6 +22,9 @@ handlers:
 - url: /tasks/check-rate-limit
   script: task_check_rate_limit.app
   login: admin
+- url: /tasks/clear-cache(.*)
+  script: task_clear_project_cache.app
+  login: admin
 # List of tracked projects
 - url: /projects(.*)
   script: list.app
