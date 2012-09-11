@@ -12,10 +12,10 @@ handlers:
 - url: /robots\.txt
   static_files: static/robots.txt
   upload: static/robots.txt
+- url: /googlef432a4ac899fa943\.html
+  static_files: static/googlef432a4ac899fa943.html
+  upload: static/googlef432a4ac899fa943.html
 # Tasks / Cron jobs
-- url: /tasks/get-versions
-  script: task_get.app
-  login: admin
 - url: /tasks/get-tags
   script: task_get_by_tags.app
   login: admin
