@@ -19,6 +19,12 @@ handlers:
 - url: /tasks/get-tags
   script: task_get_by_tags.app
   login: admin
+- url: /tasks/check-rate-limit
+  script: task_check_rate_limit.app
+  login: admin
+# List of tracked projects
+- url: /projects(.*)
+  script: list.app
 # Catch rest to API
 - url: /.*
   script: api.app
