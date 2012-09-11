@@ -81,7 +81,7 @@ class ImportVersions(webapp.RequestHandler):
                                 commit=tag['commit']['sha'],
                                 date=version_date)
                     v.put()
-                    logging.info('added new version to ' + project + ': ' + tag['name'])
+                    logging.info('added new version to ' + project + ': ' + version_version)
 
             # Add most recent (by date) version to version list
             q = db.GqlQuery("SELECT version FROM Version WHERE project = :1 ORDER BY date DESC", project).get()
