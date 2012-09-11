@@ -67,7 +67,7 @@ class ImportVersions(webapp.RequestHandler):
             # Looping over tags
             for tag in tags:
                 # If tags are not in the database, add them
-                q = db.GqlQuery("SELECT version,date FROM Version WHERE project = :1 AND commit = :2", project, tag['commit']['sha'])
+                q = db.GqlQuery("SELECT * FROM Version WHERE project = :1 AND commit = :2", project, tag['commit']['sha'])
                 if (q.count() == 0):
                     commit_url = 'https://api.github.com/repos/' + repos[project] + '/commits/' + tag['commit']['sha']
                     commit = json.loads(urlfetch.fetch(commit_url).content)
