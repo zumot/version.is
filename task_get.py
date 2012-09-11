@@ -36,7 +36,7 @@ class ImportVersions(webapp.RequestHandler):
 
         self.response.write("Success")
 
-        memcache.add('versions', versions)
+        memcache.set('versions', versions)
         logging.info('Generated new versions list')
         logging.info('Saved new versions list to memcache')
 
