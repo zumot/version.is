@@ -10,7 +10,13 @@ This is the result of a [lazyweb-request](https://github.com/h5bp/lazyweb-reques
 
 Data is pulled in from the gist below and cached on the server.
 
-https://gist.github.com/3691351
+https://gist.github.com/3697931
+
+The list consists of a key/value pair, ala projectname and github username or orginasation slash repo name. For jQuery this would be jquery=jquery/jquery and for backbone.js it would be backbone=documentcloud/backbone.
+
+It pulls the version data from git tags via the GitHub API. Information about the individual tags will be stored in GAE Datastore, to lessen the load on the API.
+
+The current versions are stored as a list in memcache to enable quick access.
 
 # Try it
 
