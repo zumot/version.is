@@ -1,0 +1,12 @@
+application: version-is
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+ - url: /tasks/get-versions
+   script: version-get.app
+   login: admin
+ - url: /.*
+   script: version-is.app
