@@ -55,6 +55,6 @@ class JsonProjectVersion(webapp.RequestHandler):
 
 app = webapp.WSGIApplication([
     webapp.Route('/', MainPage),
-    webapp.Route('/<project:\w+>/json', JsonProjectVersion),
-    webapp.Route('/<project:\w+>', ProjectVersion)
+    webapp.Route('/<project:[a-z0-9-_](.*)>/json', JsonProjectVersion),
+    webapp.Route('/<project:[a-z0-9-_](.*)>', ProjectVersion)
 ], debug=True)
