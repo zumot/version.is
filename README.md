@@ -11,3 +11,7 @@ This is the result of a [lazyweb-request](https://github.com/h5bp/lazyweb-reques
 Data is pulled in from the gist below and cached on the server.
 
 https://gist.github.com/3691351
+
+# Try it
+
+An early implementation of the api is available at [version-is.appspot.com](http://version-is.appspot.com "version.is at Google App Engine").
