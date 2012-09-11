@@ -16,6 +16,9 @@ handlers:
 - url: /tasks/get-versions
   script: task_get.app
   login: admin
+- url: /tasks/get-tags
+  script: task_get_by_tags.app
+  login: admin
 # Catch rest to API
 - url: /.*
   script: api.app
