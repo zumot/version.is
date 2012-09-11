@@ -1,54 +1,85 @@
-<!doctype html>
-<html lang="en-US">
-<head>
-  <meta charset="utf-8">
-  <title>version.is</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-US"> <!--<![endif]-->
 
-<header class="page-header">
-  <h1 class="page-header-title">version.is</h1>
-  <h2 class="page-header-subtitle">| An API for getting the latest version of Open Source projects</h2>
-</header>
+  <head>
 
-<section class="section">
+    <!--  Meta Data  -->
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="description" content="Version.is | An API for getting the latest version of Open Source projects" />
+    <meta name="author" content="" />
 
-<h2 class="section-title">Usage</h2>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
-<p>A few examples:</p>
+    <!--<link type="text/plain" rel="author" href="humans.txt" />-->
 
-<pre>GET http://api.version.is/jquery
- -> 1.8.2pre</pre>
+    <title>Version.Is</title>
 
-<pre>GET http://api.version.is/jquery?format=json
- -> {"project":"jquery", "version":"1.8.2pre"}</pre>
+    <!--  Favicon  -->
+    <!--<link rel="shortcut icon" href="assets/gui/favicon.ico" type="image/vnd.microsoft.icon">
+    <link rel="shortcut icon" href="assets/gui/favicon.gif" type="image/gif">
+    <link rel="shortcut icon" href="assets/gui/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/gui/touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/gui/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/gui/touch-icon-iphone4.png">-->
 
-<pre>GET http://api.version.is/jquery?format=json&callback=foo
- -> foo({"project":"jquery", "version":"1.8.2pre"});</pre>
+    <!--  CSS  -->
+    <!--[if ! lte IE 6]><!-->
+    <link rel="stylesheet" media="screen" href="global.css">
+    <!--<![endif]-->
 
-</section>
+    <!--  JavaScript  -->
 
-<section class="section">
-  <h2 class="section-title">Supported Projects</h2>
-  <ul>
-    <li>jQuery <code>jquery</code></li>
-    <li>backbone.js <code>backbone</code></li>
-    <li>underscore.js <code>underscore</code></li>
-    <li>Modernizr <code>modernizr</code></li>
-    <li>grunt.js <code>grunt</code></li>
-    <li>Twitter Bootstrap <code>twitter-bootstrap</code></li>
-    <li>Normalize.css <code>normalize-css</code></li>
-    <li>HTML5Boilerplate <code>html5boilerplate</code></li>
-  </ul>
-</section>
+  </head>
 
-<section class="section">
-  <h2 class="section-title">Contributors</h2>
-  <p>Original idea by <a href="https://github.com/higgo">David Higgins</a> posted as a <a href="https://github.com/h5bp/lazyweb-requests/issues/96">lazyweb-request</a>.</p>
-  <p>Code by <a href="https://github.com/gustavnikolaj">Gustav Nikolaj</a>. Available on <a href="https://github.com/gustavnikolaj/version.is">GitHub</a>.</p>
-</section>
+  <body>
+    <a href="#content" class="visuallyhidden focusable" title="Skip to Site Content" accesskey="s">Skip to page content</a>
+    <a href="https://github.com/gustavnikolaj/version.is/"><img class="github-ribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
+    <header class="page-header">
+      <h1 class="page-header-title"><a href="http://www.version.is/" title="">version.is</a></h1>
+      <h2 class="page-header-subtitle">| An API for getting the latest version of Open Source projects</h2>
+    </header><!--/ page-header  -->
+    <section id="content" class="section">
 
-</body>
+    <h3 class="delta section-title">Usage</h3>
+
+    <p>A few examples:</p>
+
+    <pre>GET http://api.version.is/jquery
+  -&gt; 1.8.2pre</pre>
+
+    <pre>GET http://api.version.is/jquery?format=json
+  -&gt; {"project":"jquery", "version":"1.8.2pre"}</pre>
+
+    <pre>GET http://api.version.is/jquery?format=json&amp;callback=foo
+  -&gt; foo({"project":"jquery", "version":"1.8.2pre"});</pre>
+
+    </section><!--/ section  -->
+
+    <section class="section">
+      <h3 class="delta section-title">Supported Projects</h3>
+      <ul>
+        <li>jQuery <code>jquery</code></li>
+        <li>backbone.js <code>backbone</code></li>
+        <li>underscore.js <code>underscore</code></li>
+        <li>Modernizr <code>modernizr</code></li>
+        <li>grunt.js <code>grunt</code></li>
+        <li>Twitter Bootstrap <code>twitter-bootstrap</code></li>
+        <li>Normalize.css <code>normalize-css</code></li>
+        <li>HTML5Boilerplate <code>html5boilerplate</code></li>
+      </ul>
+    </section><!--/ section  -->
+
+    <section class="section">
+      <h3 class="delta section-title">Contributors</h3>
+      <p>Original idea by <a href="https://github.com/higgo/">David Higgins</a> posted as a <a href="https://github.com/h5bp/lazyweb-requests/issues/96/">lazyweb-request</a>.<br />Code by <a href="https://github.com/gustavnikolaj/">Gustav Nikolaj</a>. Available on <a href="https://github.com/gustavnikolaj/version.is/">GitHub</a>.</p>
+    </section><!--/ section  -->
+
+  <!--  JavaScript Footer  -->
+
+  </body>
+
 </html>
