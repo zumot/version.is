@@ -1,4 +1,4 @@
 cron:
 - description: Hourly version fetching from gist
   url: /tasks/get-versions
-  schedule: every 1 hours
+  schedule: every 30 minutes

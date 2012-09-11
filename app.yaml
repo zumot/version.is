@@ -5,8 +5,17 @@ api_version: 1
 threadsafe: true
 
 handlers:
- - url: /tasks/get-versions
-   script: version-get.app
-   login: admin
- - url: /.*
-   script: version-is.app
+# Static files
+- url: /favicon\.ico
+  static_files: static/favicon.ico
+  upload: static/favicon.ico
+- url: /robots\.txt
+  static_files: static/robots.txt
+  upload: static/robots.txt
+# Tasks / Cron jobs
+- url: /tasks/get-versions
+  script: task_get.app
+  login: admin
+# Catch rest to API
+- url: /.*
+  script: api.app
