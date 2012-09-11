@@ -1,5 +1,6 @@
 import json
 import logging
+import re
 from datetime import datetime, timedelta
 from collections import defaultdict
 from google.appengine.api import memcache
@@ -72,10 +73,13 @@ class ImportVersions(webapp.RequestHandler):
                     commit_url = 'https://api.github.com/repos/' + repos[project] + '/commits/' + tag['commit']['sha']
                     commit = json.loads(urlfetch.fetch(commit_url).content)
 
+                    version_date = parse_iso8601_datetime(commit['commit']['author']['date'])  # Parse the date to python datetime
+                    version_version = re.sub('^v(?=\d)', '', tag['name'])  # Remove leading v from version number
+
                     v = Version(project=project,
-                                version=tag['name'],
+                                version=version_version,
                                 commit=tag['commit']['sha'],
-                                date=parse_iso8601_datetime(commit['commit']['author']['date']))
+                                date=version_date)
                     v.put()
                     logging.info('added new version to ' + project + ': ' + tag['name'])
 
