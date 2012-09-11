@@ -21,3 +21,17 @@ The current versions are stored as a list in memcache to enable quick access.
 # Try it
 
 An early implementation of the api is available at [version-is.appspot.com](http://version-is.appspot.com "version.is at Google App Engine").
+
+# Usage
+
+Get a list of all projects monitored and their current version:
+```
+GET http://version.is/projects
+```
+
+Get the version of a single project
+```
+GET http://version.is/<project_name>
+```
+
+If you want a JSON formatted response, append `/json` to the request. If you want JSONP response add `/json?callback=CallbackFunctionName`.
