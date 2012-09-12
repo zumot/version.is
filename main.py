@@ -1,6 +1,6 @@
 from google.appengine.ext import webapp
-from versionis.views.projects import Projects
-from versionis.views.projectversion import ProjectVersion
+from app.views.projects import Projects
+from app.views.projectversion import ProjectVersion
 
 
 charset = 'utf-8'

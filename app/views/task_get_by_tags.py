@@ -6,8 +6,8 @@ from google.appengine.api import memcache
 from google.appengine.ext import webapp
 from google.appengine.api import urlfetch
 from google.appengine.ext import db
-from versionis.helpers import iso8601date
-from versionis.models.version import Version
+from app.helpers import iso8601date
+from app.models.version import Version
 
 
 # Request Handler and Processing object

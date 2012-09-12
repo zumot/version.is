@@ -1,6 +1,6 @@
 import logging
 from google.appengine.ext import webapp
-from versionis.models.version import Version
+from app.models.version import Version
 
 
 # Clear Cache Request Handler
