@@ -30,4 +30,4 @@ handlers:
   script: list.app
 # Catch rest to API
 - url: /.*
-  script: api.app
+  script: main.app
