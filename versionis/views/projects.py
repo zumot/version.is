@@ -25,7 +25,7 @@ class ProjectsPlain(webapp.RequestHandler):
             self.response.write('No projects is monitored at the moment.')
 
 
-class ProjectsJSON(webapp.RequestHandler):
+class ProjectsJson(webapp.RequestHandler):
     def get(self):
         self.response.status = 200
         self.response.headers['Charset'] = charset
