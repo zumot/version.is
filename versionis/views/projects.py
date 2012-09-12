@@ -1,48 +1,65 @@
 from google.appengine.ext import webapp
 from google.appengine.api import memcache
+from versionis.helpers import format
 import json
 
 
-charset = 'utf-8'
+class Projects(webapp.RequestHandler):
+    def get(self):
+        response_format = format.get(self.request.get('format'), self.request.headers['accept'])
+
+        self.response.status = 200
+        self.response.headers['Charset'] = 'utf-8'
+        self.response.headers['Content-Type'] = response_format
+
+        self.response.write(gimmeProjects(response_format, self.request.get('callback')))
 
 
 def projectsList():
     return memcache.get('versions')
 
 
-class ProjectsPlain(webapp.RequestHandler):
-    def get(self):
-        self.response.status = 200
-        self.response.headers['Charset'] = charset
-        self.response.headers['Content-Type'] = 'text/plain'
+def gimmeProjects(response_format, callback):
+    formats = format.formats()
 
-        projects = projectsList()
-
-        if projects:
-            for project in projects:
-                self.response.write(project + ': ' + projects[project] + "\n")
-        else:
-            self.response.write('No projects is monitored at the moment.')
+    if response_format == formats[0]:
+        return projectsHtml()
+    if response_format == formats[1]:
+        return projectsPlain()
+    if response_format == formats[2]:
+        return projectsJson(callback)
 
 
-class ProjectsJson(webapp.RequestHandler):
-    def get(self):
-        self.response.status = 200
-        self.response.headers['Charset'] = charset
-        self.response.headers['Content-Type'] = 'application/json'
+def projectsHtml():
+    return ('<h1>Monitored Projects</h1>' +
+            '<ul><li>' + projectsPlain().replace('\n', '</li><li>') + '</li></ul>').replace('<li></li>', '')
 
-        projects = projectsList()
 
-        if projects:
-            content = projects
-        else:
-            content = {'error': 'No projects is monitored at the moment.'}
+def projectsPlain():
+    projects = projectsList()
 
-        callback = self.request.get('callback')
+    if projects:
+        result = ''
+        for project in projects:
+            result = result + project + ': ' + projects[project] + "\n"
+    else:
+        result = 'No projects is monitored at the moment.'
 
-        if callback != '':
-            content = json.dumps(content, separators=(',', ':'))
-            self.response.write(callback + '(' + content + ');')
-        else:
-            content = json.dumps(content, indent=2)
-            self.response.write(content)
+    return result
+
+
+def projectsJson(callback):
+    projects = projectsList()
+
+    if projects:
+        content = projects
+    else:
+        content = {'error': 'No projects is monitored at the moment.'}
+
+    if callback != '':
+        content = json.dumps(content, separators=(',', ':'))
+        content = callback + '(' + content + ');'
+    else:
+        content = json.dumps(content, indent=2)
+
+    return content
