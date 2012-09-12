@@ -25,9 +25,6 @@ handlers:
 - url: /tasks/clear-cache(.*)
   script: versionis.views.task_clear_project_cache.app
   login: admin
-# List of tracked projects
-- url: /projects(.*)
-  script: versionis.views.list.app
 # Catch rest to API
 - url: /.*
   script: main.app

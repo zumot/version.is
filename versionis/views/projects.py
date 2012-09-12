@@ -46,9 +46,3 @@ class JsonProjects(webapp.RequestHandler):
         else:
             content = json.dumps(content, indent=2)
             self.response.write(content)
-
-
-app = webapp.WSGIApplication([
-    webapp.Route('/projects/json', JsonProjects),
-    webapp.Route('/projects', PlainProjects)
-], debug=True)

@@ -1,6 +1,7 @@
 from google.appengine.ext import webapp
 from google.appengine.api import memcache
 import json
+from versionis.views.projects import PlainProjects, JsonProjects
 
 
 charset = 'utf-8'
@@ -55,6 +56,8 @@ class JsonProjectVersion(webapp.RequestHandler):
 
 app = webapp.WSGIApplication([
     webapp.Route('/', MainPage),
+    webapp.Route('/projects/json', JsonProjects),
+    webapp.Route('/projects', PlainProjects),
     webapp.Route('/<project:[a-z0-9-_](.*)>/json', JsonProjectVersion),
     webapp.Route('/<project:[a-z0-9-_](.*)>', ProjectVersion)
 ], debug=True)
