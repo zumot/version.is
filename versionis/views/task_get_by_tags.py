@@ -1,47 +1,13 @@
 import json
 import logging
 import re
-from datetime import datetime, timedelta
 from collections import defaultdict
 from google.appengine.api import memcache
 from google.appengine.ext import webapp
 from google.appengine.api import urlfetch
 from google.appengine.ext import db
-
-
-# Version database model
-class Version(db.Model):
-    project = db.StringProperty(required=True)
-    version = db.StringProperty(required=True)
-    commit = db.StringProperty(required=True)
-    date = db.DateTimeProperty(required=True)
-
-
-# ISO8601 date string to datetime parser
-def parse_iso8601_datetime(dtstr, loose=False):
-    """
-    Convert ISO8601 datetime string and return Python datetime.datetime.
-    Specify loose=True for more relaxed parsing accepting eg "YYYY-MM-DD" format.
-
-    Raise ValueError on malformed input.
-    reference: http://stackoverflow.com/questions/8569396/storing-rss-pubdate-in-app-engine-datastore#answer-8570029
-    """
-    dt = None
-    if len(dtstr) == 19:    # (eg '2010-05-07T23:12:51')
-        dt = datetime.strptime(dtstr, "%Y-%m-%dT%H:%M:%S")
-    elif len(dtstr) == 20:  # (eg '2010-05-07T23:12:51Z')
-        dt = datetime.strptime(dtstr, "%Y-%m-%dT%H:%M:%SZ")
-    elif len(dtstr) == 25:  # (eg '2010-05-07T23:12:51-08:00')
-        dt = datetime.strptime(dtstr[0:19], "%Y-%m-%dT%H:%M:%S")
-        tzofs = int(dtstr[19:22])
-        dt = dt - timedelta(hours=tzofs)
-    else:
-        if loose:
-            if len(dtstr) == 10:  # (eg '2010-05-07')
-                dt = datetime.strptime(dtstr, "%Y-%m-%d")
-        if not dt:
-            raise ValueError("Invalid ISO8601 format: '%s'" % dtstr)
-    return dt
+from versionis.helpers import iso8601date
+from versionis.models.version import Version
 
 
 # Request Handler and Processing object
@@ -73,7 +39,7 @@ class ImportVersions(webapp.RequestHandler):
                     commit_url = 'https://api.github.com/repos/' + repos[project] + '/commits/' + tag['commit']['sha']
                     commit = json.loads(urlfetch.fetch(commit_url).content)
 
-                    version_date = parse_iso8601_datetime(commit['commit']['author']['date'])  # Parse the date to python datetime
+                    version_date = iso8601date.parse_iso8601_datetime(commit['commit']['author']['date'])  # Parse the date to python datetime
                     version_version = re.sub('^v(?=\d)', '', tag['name'])  # Remove leading v from version number
 
                     v = Version(project=project,
