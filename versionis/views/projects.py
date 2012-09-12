@@ -10,7 +10,7 @@ def projectsList():
     return memcache.get('versions')
 
 
-class PlainProjects(webapp.RequestHandler):
+class ProjectsPlain(webapp.RequestHandler):
     def get(self):
         self.response.status = 200
         self.response.headers['Charset'] = charset
@@ -25,7 +25,7 @@ class PlainProjects(webapp.RequestHandler):
             self.response.write('No projects is monitored at the moment.')
 
 
-class JsonProjects(webapp.RequestHandler):
+class ProjectsJSON(webapp.RequestHandler):
     def get(self):
         self.response.status = 200
         self.response.headers['Charset'] = charset
