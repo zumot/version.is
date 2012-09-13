@@ -1,6 +1,6 @@
 from google.appengine.api import memcache
 from google.appengine.ext import webapp
-from app.helpers import format
+from app.helpers import format, template
 import json
 
 
@@ -33,10 +33,19 @@ def projectHtml(project):
 
     if project in array:
         status = 200
-        result = '<p>Version of ' + project + ' is:</p><h1>' + array[project] + '</h1>'
+        template_data = {
+            'title': project,
+            'project': project,
+            'version': array[project]
+        }
+        result = template.render('response', template_data)
     else:
         status = 404
-        result = '<p>No data for ' + project + '</p>'
+        template_data = {
+            'title': 'Error!',
+            'message': 'No data for ' + project
+        }
+        result = template.render('error', template_data)
 
     return (result, status)
 

@@ -15,6 +15,12 @@ handlers:
 - url: /googlef432a4ac899fa943\.html
   static_files: static/googlef432a4ac899fa943.html
   upload: static/googlef432a4ac899fa943.html
+- url: /assets/css
+  static_dir: static/assets/css
+- url: /assets/img
+  static_dir: static/assets/img
+- url: /assets/js
+  static_dir: static/assets/js
 # Administration tasks
 - url: /tasks(.*)
   script: tasks.app
