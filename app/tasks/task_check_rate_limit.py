@@ -19,8 +19,3 @@ class RateCheck(webapp.RequestHandler):
         self.response.write('Remaining: ' + str(rate['rate']['remaining']).rjust(10))
 
         logging.info('GitHub API status: ' + str(rate['rate']['remaining']) + ' remaining of ' + str(rate['rate']['limit']) + ' limit')
-
-
-app = webapp.WSGIApplication([
-    webapp.Route('/tasks/check-rate-limit', RateCheck)
-], debug=True)

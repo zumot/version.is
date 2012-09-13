@@ -57,9 +57,3 @@ class ImportVersions(webapp.RequestHandler):
         memcache.set('versions', versions)
         logging.info('Generated new versions list from tags')
         logging.info('Saved new versions list to memcache')
-
-
-# Set up routing
-app = webapp.WSGIApplication([
-    webapp.Route('/tasks/get-tags', ImportVersions)
-], debug=True)

@@ -14,13 +14,6 @@ class ClearCache(webapp.RequestHandler):
 
 
 # Error catcher
-class InvalidRequest(webapp.RequestHandler):
+class ClearCacheInvalidRequest(webapp.RequestHandler):
     def get(self):
         self.response.write('Invalid request. Specify project to purge...')
-
-
-# Routing
-app = webapp.WSGIApplication([
-    webapp.Route('/tasks/clear-cache', InvalidRequest),
-    webapp.Route('/tasks/clear-cache/<project:[a-z0-9-_](.*)>', ClearCache)
-], debug=True)

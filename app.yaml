@@ -15,15 +15,9 @@ handlers:
 - url: /googlef432a4ac899fa943\.html
   static_files: static/googlef432a4ac899fa943.html
   upload: static/googlef432a4ac899fa943.html
-# Tasks / Cron jobs
-- url: /tasks/get-tags
-  script: app.views.task_get_by_tags.app
-  login: admin
-- url: /tasks/check-rate-limit
-  script: app.views.task_check_rate_limit.app
-  login: admin
-- url: /tasks/clear-cache(.*)
-  script: app.views.task_clear_project_cache.app
+# Administration tasks
+- url: /tasks(.*)
+  script: tasks.app
   login: admin
 # Catch rest to API
 - url: /.*
