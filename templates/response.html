@@ -1,5 +1,9 @@
 {% extends "_base.html" %}
 
 {% block content %}
-  <h1>{{ project }} version is {{ version }} </h1>
+<header class="page-header">
+  <h2 class="page-header-subtitle">{{ project }} </h2>
+  <h1 class="page-header-title logo-color">version.is</h1>
+  <h2 class="page-header-subtitle">| {{ version }}</h2>
+</header>
 {% endblock %}

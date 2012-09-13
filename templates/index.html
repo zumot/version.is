@@ -1,10 +1,102 @@
-<!doctype html>
-<html lang="en-US">
-<head>
-  <meta charset="utf-8">
-  <title>version.is</title>
-</head>
-<body>
-  <h1>Version.is</h1>
-</body>
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-US"> <!--<![endif]-->
+
+  <head>
+
+    <meta name="description" content="Version.is: An API for getting the latest version of Open Source projects" />
+
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+    <link type="text/plain" rel="author" href="humans.txt" />
+
+    <title>version.is</title>
+
+    <!--  CSS  -->
+    <!--[if ! lte IE 6]><!-->
+    <link rel="stylesheet" media="screen" href="/assets/css/style.css">
+    <!--<![endif]-->
+
+  </head>
+
+  <body>
+
+    <a href="#content" class="visuallyhidden focusable" title="Skip to Site Content" accesskey="s">Skip to page content</a>
+    <a href="https://github.com/gustavnikolaj/version.is/"><img class="github-ribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header class="page-header">
+      <h1 class="page-header-title"><a href="/" title="">version.is</a></h1>
+      <h2 class="page-header-subtitle">| An API for getting the latest version of Open Source projects</h2>
+    </header><!--/ page-header  -->
+
+    <section id="content" class="section">
+
+    <h3 class="delta section-title">Usage</h3>
+
+        <p class="pre-pre">
+          Get the version of a single project:
+        </p>
+
+        <pre>http://version.is/&lt;project_name&gt;</pre>
+
+        <p class="pre-pre">
+          Get a list of all projects monitored:<br>
+        </p>
+        <pre>http://version.is/projects</pre>
+
+        <p class="pre-pre">
+          The response can be delivered in 3 different formats; text/html, text/plain, application/json. You can specify the format using the querystring like this:
+        </p>
+        <pre>http://version.is/<project_name>?format=&lt;html|plain|json&gt;
+http://version.is/projects?format=&lt;html|plain|json&gt;</pre>
+
+        <p class="pre-pre">
+          Another way to specify the format, is using HTTP-Accept Headers. Consider the below example of fetching current jquery version in json format with curl in a terminal.<br>(Note that formats defined in the querystring overrules the HTTP-Accept header. For json requested with HTTP-accept header, you still need to use the querystring for a JSONP-callback, as described below.)
+        </p>
+        <pre>curl -i -H "Accept: application/json" "http://version.is/jquery"</pre>
+
+        <p class="pre-pre">
+          If you request the json format, you can specify a callback for JSONP, like this:
+        </p>
+        <pre>http://version.is/&lt;project_name&gt;?format=json&amp;callback=&lt;callbackFunctionName&gt;</pre>
+
+    </section><!--/ section  -->
+
+    <section class="section">
+      <h3 class="delta section-title">Projects that are being monitored</h3>
+      <ul>
+        {% if projects %}
+        {% for project in projects %}
+        <li>{{ project }} <a href="/{{ project }}"><code>{{ project }}</code></a></li>
+        {% endfor %}
+        {% else %}
+          <li>Could'nt get the data at the moment.</li>
+        {% endif %}
+      </ul>
+    </section><!--/ section  -->
+
+    <section class="section">
+      <h3 class="delta section-title">Contributors</h3>
+      <p>
+        Original idea by <a href="https://github.com/higgo/">David Higgins</a> posted as a <a href="https://github.com/h5bp/lazyweb-requests/issues/96/">lazyweb-request</a>.<br>
+        Domain sponsored by <a href="https://github.com/nicokunz/">Nico Akunz</a>.<br>
+        Frontend design by <a href="https://github.com/michaelbragg/">Michael Bragg</a> with inspiration from prototypes by <a href="https://github.com/higgo/">David Higgins</a> and <a href="https://github.com/gustavnikolaj/">Gustav Nikolaj</a>.<br>
+        Code and implementation by <a href="https://github.com/gustavnikolaj/">Gustav Nikolaj</a>. Available on <a href="https://github.com/gustavnikolaj/version.is/">GitHub</a>.
+      </p>
+      <p>
+        Other contributers: <a href="https://github.com/Luit/">Luit van Drongelen</a>,
+        <a href="https://github.com/NARKOZ/">Nihad Abbasov</a>,
+        <a href="https://github.com/paulirish/">Paul Irish</a>,
+        <a href="https://github.com/roblarsen/">Rob Larsen</a>,
+        <a href="https://github.com/sagarsane/">Sagar Sane</a> and
+        <a href="https://github.com/sindresorhus/">Sindre Sorhus</a>.
+      </p>
+    </section><!--/ section  -->
+
+  <!--  JavaScript Footer  -->
+
+  </body>
+
 </html>

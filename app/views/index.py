@@ -1,6 +1,7 @@
 import json
 
 from google.appengine.ext import webapp
+from google.appengine.api import memcache
 from app.helpers import format, template
 
 
@@ -29,7 +30,8 @@ def gimmeIndex(response_format, callback):
 
 
 def indexHtml():
-    return (template.render('index', {}), 200)
+    template_data = {'projects': memcache.get('versions')}
+    return (template.render('index', template_data), 200)
 
 
 def indexPlain():
