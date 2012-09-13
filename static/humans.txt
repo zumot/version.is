@@ -1,0 +1,29 @@
+#  humanstxt.org
+#  The humans responsible & technology colophon
+
+#  Team
+
+Gustav Nikolaj
+https://github.com/gustavnikolaj/
+Copenhagen, Denmark
+
+Michael Bragg
+http://michaelbragg.net/
+twitter: @michaelbragg
+West Midlands, England
+
+#  THANKS
+
+David Higgins - Initial idea
+Nico Akunz - Sponsoring domain
+Nihad Abbasov
+Luit van Drongelen
+Paul Irish
+Rob Larsen
+Sagar Sane
+Sindre Sorhus
+
+#  SITE
+
+Site Url: http://www.version.is/
+Git Repo: https://github.com/gustavnikolaj/version.is/
