@@ -1,5 +1,5 @@
 from google.appengine.ext import webapp
-from app.tasks.task_get_by_tags import ImportVersions
+from app.tasks.get_by_tags import ImportVersions
 from app.tasks.clear_project_cache import ClearCache, ClearCacheInvalidRequest
 from app.tasks.check_rate_limit import RateCheck
 
