@@ -1,0 +1,20 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<header class="page-header">
+  <h1 class="page-header-title logo-color"><a href="/">version.is</a></h1>
+  <h2 class="page-header-subtitle">| are currently monitoring the following projects</h2>
+</header>
+
+<section class="section">
+  <ul>
+    {% if projects %}
+    {% for project in projects %}
+    <li>{{ project }} <a href="/{{ project }}"><code>{{ project }}</code></a></li>
+    {% endfor %}
+    {% else %}
+      <li>Could'nt get the data at the moment.</li>
+    {% endif %}
+  </ul>
+</section>
+{% endblock %}

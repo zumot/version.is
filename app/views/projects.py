@@ -1,6 +1,6 @@
 from google.appengine.ext import webapp
 from google.appengine.api import memcache
-from app.helpers import format
+from app.helpers import format, template
 import json
 
 
@@ -31,8 +31,8 @@ def gimmeProjects(response_format, callback):
 
 
 def projectsHtml():
-    return ('<h1>Monitored Projects</h1>' +
-            '<ul><li>' + projectsPlain().replace('\n', '</li><li>') + '</li></ul>').replace('<li></li>', '')
+    template_data = {'projects': memcache.get('versions')}
+    return template.render('projects', template_data)
 
 
 def projectsPlain():
