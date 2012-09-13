@@ -12,6 +12,9 @@ handlers:
 - url: /robots\.txt
   static_files: static/robots.txt
   upload: static/robots.txt
+- url: /humans\.txt
+  static_files: static/humans.txt
+  upload: static/humans.txt
 - url: /googlef432a4ac899fa943\.html
   static_files: static/googlef432a4ac899fa943.html
   upload: static/googlef432a4ac899fa943.html
