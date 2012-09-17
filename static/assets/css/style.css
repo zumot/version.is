@@ -312,6 +312,13 @@ sub {
   right: 0;
   border: 0;
 }
+.input-wide {
+  width: 100%;
+  padding: 0.25em 0.5em;
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
 
 /* Print Stuff */
 @media print {
