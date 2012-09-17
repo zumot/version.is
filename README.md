@@ -43,3 +43,11 @@ If you request the json format, you can specify a callback for JSONP, like this:
 ```
 GET http://version.is/<project_name>?format=json&callback=<callbackFunctionName>
 ```
+
+## Running it locally
+
+If you want to poke around the code and run it locally, all you need to do is to install the [Google App Engine SDK for Python](https://developers.google.com/appengine/downloads#Google_App_Engine_SDK_for_Python "Google App Engine SDK for Python").
+
+When you have installed the SDK, you clone the repo into a local folder, and "Add Existing Application..." from the app menus in the SDK. When that is done, you can run the app from within the SDK interface.
+
+To build the local database, you just have to visit http://localhost:8080/tasks/get-versions in your browser. When having an empty database, it will take about 5 minutes at the moment. This will increase with the size of the sources repo. You can follow the progress of the task in the Logs, accessed from the SDK interface.
