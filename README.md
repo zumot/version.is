@@ -43,3 +43,19 @@ If you request the json format, you can specify a callback for JSONP, like this:
 ```
 GET http://version.is/<project_name>?format=json&callback=<callbackFunctionName>
 ```
+
+## Running it locally
+
+If you want to poke around the code and run it locally, all you need to do is to install the [Google App Engine SDK for Python](https://developers.google.com/appengine/downloads#Google_App_Engine_SDK_for_Python "Google App Engine SDK for Python").
+
+When you have installed the SDK, you clone the repo into a local folder, and "Add Existing Application..." from the app menus in the SDK. When that is done, you can run the app from within the SDK interface.
+
+To build the local database, you just have to visit http://localhost:8080/tasks/get-versions in your browser. When having an empty database, it will take up to about 10 minutes at the moment. This will increase with the size of the sources repo. You can follow the progress of the task in the Logs, accessed from the SDK interface.
+
+The default datastore is located in a temporary folder, that once in a while and on restarts, will be cleared. To ensure that you do not have to rebuild the database after each restart of the application, you can move it into a file in the project folder. I use the name localdatastore (which is in the .gitignore of this repo) and the following Launch flags:
+
+```
+--datastore_path=/Users/gustav/Projects/version.is/localdatastore --use_sqlite
+```
+
+You would obviously want to change the path of the `--datastore_path` parameter. The --use_sqlite flag, makes it use sqlite instead of the default mysql, which removes the mysql dependency and makes the application start up faster. It might make the application perform slightly worse, but it should not be a concern when running it for testing purposes.

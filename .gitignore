@@ -12,3 +12,7 @@ Thumbs.db
 # Compiled Python Files #
 #########################
 *.pyc
+
+# Local Datastore #
+###################
+localdatastore
