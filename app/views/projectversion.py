@@ -33,7 +33,7 @@ def gimmeProject(project, response_format, callback):
 def getVersion(project):
     v = memcache.get('version:' + project)
     if not v:
-        q = db.GqlQuery("SELECT version FROM VersionCache WHERE project = :1 ORDER BY date DESC", project)
+        q = db.GqlQuery("SELECT * FROM VersionCache WHERE project = :1 ORDER BY date DESC", project)
         if q.count() == 0:
             return False
         else:
