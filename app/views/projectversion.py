@@ -50,9 +50,10 @@ def getVersionDetailed(project):
 
 
 def projectHtml(project):
-    version = getVersionDetailed(project)
+    version = getVersion(project)
 
     if version:
+        version = getVersionDetailed(project)
         status = 200
         if version[1]['meta']['prettyname']:
             project = version[1]['meta']['prettyname']
