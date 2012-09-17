@@ -1,8 +1,19 @@
 {% extends "_base.html" %}
 
 {% block content %}
-  <h1>Error!</h1>
+  <h1 class="giga">Error 404</h1>
+  <section id="content" class="section">
   <p>
     {{ message }}
   </p>
+
+  <h3 class="delta section-title">Project Monitoring</h3>
+  <p>If you are having problems with finding the project you are looking for. Please check for the version in our <a href="/projects" title="Monitored Projects"><code>project list</code></a> to see if we are monitoring it.</p>
+  <p>If we are not monitoring your desired project, please create a request with the project linking them to our <a href="https://github.com/gustavnikolaj/version.is-sources#submitting-your-project" title="Instructions on submitting the project to Version.is"><code>submission instructions</code></a>.
+  </p>
+
+  <h3 class="delta section-title">Feedback</h3>
+
+  <p>If you have any issues with Version.is, log an issues or pull request on our <a href="https://github.com/gustavnikolaj/version.is/issues" title="Version.is issue tracker"><code>GitHub repository</code></a>.</p>
+  </section>
 {% endblock %}
