@@ -70,8 +70,8 @@ def projectHtml(project):
     else:
         status = 404
         template_data = {
-            'title': 'Error!',
-            'message': 'No data for ' + project
+            'title': 'Error 404',
+            'message': 'No data for ' + project + '.'
         }
         result = template.render('error', template_data)
 
