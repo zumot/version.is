@@ -1,14 +1,33 @@
-<!doctype html>
-<html lang="en-US">
-<head>
-  <meta charset="utf-8">
-  <title>{% if title %}{{ title }} | version.is{% else %}version.is{% endif %}</title>
-  <link rel="author" href="/humans.txt" />
-  <link href="/assets/css/style.css" rel="stylesheet">
-</head>
-<body>
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-US"> <!--<![endif]-->
 
-{% block content %}{% endblock %}
+  <head>
 
-</body>
+    <meta name="description" content="Version.is: An API for getting the latest version of Open Source projects" />
+
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+    <link type="text/plain" rel="author" href="humans.txt" />
+
+    <title>{% if title %}{{ title }} | version.is{% else %}version.is{% endif %}</title>
+
+    <!--  CSS  -->
+    <!--[if ! lte IE 6]><!-->
+    <link rel="stylesheet" media="screen" href="/assets/css/style.css">
+    <!--<![endif]-->
+
+  </head>
+
+  <body>
+
+    <a href="#content" class="visuallyhidden focusable" title="Skip to Site Content" accesskey="s">Skip to page content</a>
+
+  {% block content %}{% endblock %}
+
+  <!-- Javascript Footer  -->
+
+  </body>
 </html>
