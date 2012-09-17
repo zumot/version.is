@@ -13,10 +13,6 @@ indexes:
     direction: desc
   - name: version
 
-- kind: Project
-  properties:
-  - name: project
-
 - kind: ShaCache
   properties:
   - name: project
