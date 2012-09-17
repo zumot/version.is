@@ -21,6 +21,7 @@ def projectsList():
     projects = []
     for project in ps:
         projects.append(project.project)
+    projects.sort()
     return projects
 
 
