@@ -2,27 +2,19 @@
 
 Single-page app and API for version checking of Open Source projects.
 
-# Origin
+## Origin
 
 This is the result of a [lazyweb-request](https://github.com/h5bp/lazyweb-requests/issues/96 "Issue #96: www.version.is Get latest version of Open Source projects.") by [@higgo](https://github.com/higgo "higgo").
 
-# Data Source
+## Data Source
 
-Data is pulled in from the gist below and cached on the server.
+Data is pulled in from the [version.is-sources](https://github.com/gustavnikolaj/version.is-sources) repo. The readme contains additional information.
 
-https://gist.github.com/3697931
-
-The list consists of a key/value pair, ala projectname and github username or orginasation slash repo name. For jQuery this would be jquery=jquery/jquery and for backbone.js it would be backbone=documentcloud/backbone.
-
-It pulls the version data from git tags via the GitHub API. Information about the individual tags will be stored in GAE Datastore, to lessen the load on the API.
-
-The current versions are stored as a list in memcache to enable quick access.
-
-# Try it
+## Try it
 
 An early implementation of the api is available at [version-is.appspot.com](http://version-is.appspot.com "version.is at Google App Engine").
 
-# Usage
+## Usage
 
 Get a list of all projects monitored and their current version:
 ```
