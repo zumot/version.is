@@ -1,8 +1,9 @@
 import json
 
 from google.appengine.ext import webapp
-from google.appengine.api import memcache
 from app.helpers import format, template
+
+from app.views.projects import projectsListDetailed
 
 
 class Index(webapp.RequestHandler):
@@ -30,7 +31,7 @@ def gimmeIndex(response_format, callback):
 
 
 def indexHtml():
-    template_data = {'projects': memcache.get('versions')}
+    template_data = {'projects': projectsListDetailed()}
     return (template.render('index', template_data), 200)
 
 

@@ -1,7 +1,9 @@
 from google.appengine.api import memcache
 from google.appengine.ext import webapp
 from app.helpers import format, template
+from google.appengine.ext import db
 import json
+from app.models import Project
 
 
 class ProjectVersion(webapp.RequestHandler):
@@ -28,15 +30,40 @@ def gimmeProject(project, response_format, callback):
         return projectJson(project, callback)
 
 
-def projectHtml(project):
-    array = memcache.get('versions')
+def getVersion(project):
+    v = memcache.get('version:' + project)
+    if not v:
+        q = db.GqlQuery("SELECT version FROM VersionCache WHERE project = :1 ORDER BY date DESC", project)
+        if q.count() == 0:
+            return False
+        else:
+            return q.get().version
+    else:
+        return v
 
-    if project in array:
+
+def getVersionDetailed(project):
+    version = getVersion(project)
+    p = Project.all().filter('project = ', project).get()
+    d = db.GqlQuery("SELECT date FROM VersionCache WHERE project = :1 ORDER BY date DESC", project).get()
+    return (version, json.loads(p.data), d.date.date())
+
+
+def projectHtml(project):
+    version = getVersionDetailed(project)
+
+    if version:
         status = 200
+        if version[1]['meta']['prettyname']:
+            project = version[1]['meta']['prettyname']
+
         template_data = {
             'title': project,
             'project': project,
-            'version': array[project]
+            'version': version[0],
+            'meta': version[1]['meta'],
+            'handler': version[1]['handler']['handler'],
+            'date': version[2].isoformat()
         }
         result = template.render('response', template_data)
     else:
@@ -51,11 +78,11 @@ def projectHtml(project):
 
 
 def projectPlain(project):
-    array = memcache.get('versions')
+    version = getVersion(project)
 
-    if project in array:
+    if version:
         status = 200
-        result = array[project]
+        result = version
     else:
         status = 404
         result = 'No data for ' + project
@@ -64,11 +91,11 @@ def projectPlain(project):
 
 
 def projectJson(project, callback):
-    array = memcache.get('versions')
+    version = getVersion(project)
 
-    if project in array:
+    if version:
         status = 200
-        content = {'project': project, 'version': array[project]}
+        content = {'project': project, 'version': version}
     else:
         status = 404
         content = {'error': 'No data for ' + project}

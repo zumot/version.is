@@ -6,4 +6,11 @@
   <h1 class="page-header-title logo-color">version.is</h1>
   <h2 class="page-header-subtitle">| {{ version }}</h2>
 </header>
+
+{% if meta.website %}
+  <p><a href="{{ meta.website }}">Project Website</a></p>
+{% endif %}
+{% if handler == 'bytags' %}
+  <p>Release date: {{ date }}</p>
+{% endif %}
 {% endblock %}

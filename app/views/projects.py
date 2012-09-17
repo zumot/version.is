@@ -2,6 +2,7 @@ from google.appengine.ext import webapp
 from google.appengine.api import memcache
 from app.helpers import format, template
 import json
+from app.models import Project
 
 
 class Projects(webapp.RequestHandler):
@@ -16,7 +17,27 @@ class Projects(webapp.RequestHandler):
 
 
 def projectsList():
-    return memcache.get('versions')
+    ps = Project.all()
+    projects = []
+    for project in ps:
+        projects.append(project.project)
+    return projects
+
+
+def projectsListDetailed():
+    ps = projectsList()
+    projects = []
+    for project in ps:
+        p = Project.all().filter('project = ', project).get()
+        data = json.loads(p.data)
+        if data['meta']['prettyname']:
+            prettyname = data['meta']['prettyname']
+        else:
+            prettyname = project
+
+        projects.append((prettyname, project))
+
+    return projects
 
 
 def gimmeProjects(response_format, callback):
@@ -31,7 +52,7 @@ def gimmeProjects(response_format, callback):
 
 
 def projectsHtml():
-    template_data = {'projects': memcache.get('versions')}
+    template_data = {'projects': projectsListDetailed()}
     return template.render('projects', template_data)
 
 
@@ -41,7 +62,7 @@ def projectsPlain():
     if projects:
         result = ''
         for project in projects:
-            result = result + project + ': ' + projects[project] + "\n"
+            result = result + project + "\n"
     else:
         result = 'No projects is monitored at the moment.'
 

@@ -2,7 +2,7 @@ from google.appengine.ext import db
 
 
 # Version database model
-class Version(db.Model):
+class VersionCache(db.Model):
     project = db.StringProperty(required=True)
     version = db.StringProperty(required=True)
     commit = db.StringProperty(required=True)

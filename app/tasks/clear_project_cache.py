@@ -1,16 +1,16 @@
 import logging
 from google.appengine.ext import webapp
-from app.models.version import Version
+from app.models import VersionCache
 
 
 # Clear Cache Request Handler
 class ClearCache(webapp.RequestHandler):
     def get(self, project):
         logging.info('Deleting tag cache from project: ' + project)
-        for person in Version.gql("WHERE project = :1", project):
+        for person in VersionCache.gql("WHERE project = :1", project):
             person.delete()
-        logging.info('Deletion of ' + project + ' tag cache done.')
-        self.response.write('Purged tag cache for: ' + project)
+        logging.info('Deletion of ' + project + ' cache done.')
+        self.response.write('Purged cache for: ' + project)
 
 
 # Error catcher

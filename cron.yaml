@@ -1,4 +1,4 @@
 cron:
 - description: Hourly version fetching from tags via gist
-  url: /tasks/get-tags
+  url: /tasks/get-versions
   schedule: every 1 hours

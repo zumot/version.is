@@ -9,8 +9,8 @@
 <section class="section">
   <ul>
     {% if projects %}
-    {% for project in projects %}
-    <li>{{ project }} <a href="/{{ project }}"><code>{{ project }}</code></a></li>
+    {% for prettyname, project in projects %}
+    <li>{{ prettyname }} <a href="/{{ project }}"><code>{{ project }}</code></a></li>
     {% endfor %}
     {% else %}
       <li>Could'nt get the data at the moment.</li>
