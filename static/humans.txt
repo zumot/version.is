@@ -1,6 +1,13 @@
 #  humanstxt.org
 #  The humans responsible & technology colophon
 
+                   (_)             (_)    
+__   _____ _ __ ___ _  ___  _ __    _ ___ 
+\ \ / / _ \ '__/ __| |/ _ \| '_ \  | / __|
+ \ V /  __/ |  \__ \ | (_) | | | |_| \__ \
+  \_/ \___|_|  |___/_|\___/|_| |_(_)_|___/
+                                          
+
 #  Team
 
 Gustav Nikolaj
