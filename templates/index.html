@@ -36,14 +36,27 @@
       <h3 class="delta section-title">Get Version Info</h3>
 
       <form id="searchForm">
-        <p><input type="text" class="input-wide" id="searchInput" placeholder="Project name..."><input id="searchSubmit" class="hidden" type="submit" value="Search"></p>
+        <p><input type="text" list="projects" class="input-wide" id="searchInput" placeholder="Project name..."><input id="searchSubmit" class="hidden" type="submit" value="Search"></p>
+        <datalist id="projects">
+          {% if projects %}
+          {% for prettyname, project in projects %}
+          <option value="{{ project }}">{{ prettyname }}</option>
+          {% endfor %}
+          {% endif %}
+        </datalist>
       </form>
+
+      <p>Press arrow down in the input field above to get a list of project names or type the first few letters to get suggestions.</p>
+
+      <p>If you are in a browser that do not support the <a href="http://caniuse.com/datalist">datalist attribute</a> please refer to the <a href="/projects">list of monitored projects</a>.</p>
+
+      <p>If there is a project that you would like to see added to the list of monitored projects, please submit it. <a href="https://github.com/gustavnikolaj/version.is-sources#submitting-your-project">Submission instructions</a>.</p>
 
     </section>
 
     <section id="content" class="section">
 
-    <h3 class="delta section-title">Usage</h3>
+    <h3 class="delta section-title">API Usage</h3>
 
         <p class="pre-pre">
           Get the version of a single project:
@@ -72,19 +85,6 @@ http://version.is/projects?format=&lt;html|plain|json&gt;</pre>
         </p>
         <pre>http://version.is/&lt;project_name&gt;?format=json&amp;callback=&lt;callbackFunctionName&gt;</pre>
 
-    </section><!--/ section  -->
-
-    <section class="section">
-      <h3 class="delta section-title">Projects that are being monitored</h3>
-      <ul>
-    {% if projects %}
-    {% for prettyname, project in projects %}
-    <li>{{ prettyname }} <a href="/{{ project }}"><code>{{ project }}</code></a></li>
-    {% endfor %}
-    {% else %}
-      <li>Could'nt get the data at the moment.</li>
-    {% endif %}
-      </ul>
     </section><!--/ section  -->
 
     <section class="section">
