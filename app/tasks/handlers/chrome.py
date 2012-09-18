@@ -8,8 +8,8 @@ from google.appengine.api import memcache
 from app.models import VersionCache
 
 
-def firefox(project, data):
-    url = 'http://people.mozilla.com/~tmielczarek/branch_versions.json'
+def chrome(project, data):
+    url = 'http://omahaproxy.appspot.com/all.json'
     content = memcache.get('cache:' + url)
 
     if content is None:
@@ -17,7 +17,6 @@ def firefox(project, data):
         memcache.add('cache:' + url, content, 120)
 
     project_data = json.loads(content)
-
     sha = hashlib.sha1()
     sha.update(content)
     sha = sha.hexdigest()
@@ -27,12 +26,19 @@ def firefox(project, data):
     if q.count() == 0:
         logging.info('refreshing ' + project + ' version data')
 
-        version_version = project_data[data['key']]
+        for os in project_data:
+            if os['os'] == data['os']:
+                os_versions = os['versions']
+
+        for vs in os_versions:
+            if vs['channel'] == data['channel']:
+                version_version = vs['version']
+                version_date = datetime.datetime.strptime(vs['date'], "%m/%d/%y")
 
         t = VersionCache(project=project,
                          version=version_version,
                          commit=sha,
-                         date=datetime.datetime.now())
+                         date=version_date)
         t.put()
     else:
         logging.info('version data for ' + project + ' unchanged')
