@@ -48,7 +48,6 @@ to waste time doing unnecessary calculations.
 
 
 def parseAcceptHeader(acceptHeader):
-    logging.info('Accept Header: ' + acceptHeader)
     highestPrio = acceptHeader.partition(',')[0]
     if highestPrio in ['text/plain', 'application/json']:
         return highestPrio
