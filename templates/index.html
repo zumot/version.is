@@ -1,42 +1,18 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en-US"> <!--<![endif]-->
+{% extends "_base.html" %}
 
-  <head>
-
-    <meta name="description" content="Version.is: An API for getting the latest version of Open Source projects" />
-
-    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-
-    <link type="text/plain" rel="author" href="humans.txt" />
-
-    <title>version.is</title>
-
-    <!--  CSS  -->
-    <!--[if ! lte IE 6]><!-->
-    <link rel="stylesheet" media="screen" href="/assets/css/style.css">
-    <!--<![endif]-->
-
-  </head>
-
-  <body>
-
-    <a href="#content" class="visuallyhidden focusable" title="Skip to Site Content" accesskey="s">Skip to page content</a>
+{% block content %}
     <a href="https://github.com/gustavnikolaj/version.is/"><img class="github-ribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
-    <header class="page-header">
+    <header class="header-main">
       <h1 class="page-header-title"><a href="/" title="">version.is</a></h1>
       <h2 class="page-header-subtitle">| An API for getting the latest version of Open Source projects</h2>
     </header><!--/ page-header  -->
 
-    <section id="search" class="section">
-
-      <h3 class="delta section-title">Get Version Info</h3>
+    <section id="search" class="section widget-search">
 
       <form id="searchForm">
-        <p><input type="text" list="projects" class="input-wide" id="searchInput" placeholder="Project name..."><input id="searchSubmit" class="hidden" type="submit" value="Search"></p>
+        <input type="text" list="projects" class="input-wide" id="searchInput" placeholder="Enter the projects name&#8230;">
+        <input id="searchSubmit" class="hidden" type="submit" value="Search">
         <datalist id="projects">
           {% if projects %}
           {% for prettyname, project in projects %}
@@ -45,14 +21,19 @@
           {% endif %}
         </datalist>
       </form>
+      <small>Press arrow down in the input field above to get a list of project names or type the first few letters to get suggestions.</small>
+    </section><!--/ section widget-search  -->
 
-      <p>Press arrow down in the input field above to get a list of project names or type the first few letters to get suggestions.</p>
+    <section class="section">
 
-      <p>If you are in a browser that do not support the <a href="http://caniuse.com/datalist">datalist attribute</a> please refer to the <a href="/projects">list of monitored projects</a>.</p>
+
+      <!--<p>If you are in a browser that do not support the <a href="http://caniuse.com/datalist">datalist attribute</a> please refer to the <a href="/projects">list of monitored projects</a>.</p>-->
+
+      <h3 class="delta section-title">Submit a project</h3>
 
       <p>If there is a project that you would like to see added to the list of monitored projects, please submit it. <a href="https://github.com/gustavnikolaj/version.is-sources#submitting-your-project">Submission instructions</a>.</p>
 
-    </section>
+    </section><!--/ section widget-search  -->
 
     <section id="content" class="section">
 
@@ -105,10 +86,12 @@ http://version.is/projects?format=&lt;html|plain|json&gt;</pre>
       </p>
     </section><!--/ section  -->
 
+    <footer class="footer-main">
+      <p>Copyright &copy; 2012 Version.is | Code licensed under the <a href="http://opensource.org/licenses/MIT/" title="">MIT License</a>.</p>
+    </footer><!--  footer-main  -->
+
     <!--  JavaScript Footer  -->
 
     <script type="text/javascript" src="/assets/js/script.js"></script>
 
-  </body>
-
-</html>
+{% endblock %}

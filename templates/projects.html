@@ -1,12 +1,12 @@
 {% extends "_base.html" %}
 
 {% block content %}
-<header class="page-header">
+<header class="header-main">
   <h1 class="page-header-title logo-color"><a href="/">version.is</a></h1>
-  <h2 class="page-header-subtitle">| are currently monitoring the following projects</h2>
+  <h2 class="page-header-subtitle">| currently monitoring the following projects</h2>
 </header>
 
-<section class="section">
+<section id="content" class="section">
   <ul>
     {% if projects %}
     {% for prettyname, project in projects %}
@@ -17,4 +17,9 @@
     {% endif %}
   </ul>
 </section>
+
+    <footer class="footer-main">
+      <p>Copyright &copy; 2012 Version.is | Code licensed under the <a href="http://opensource.org/licenses/MIT/" title="">MIT License</a>.</p>
+    </footer><!--  footer-main  -->
+
 {% endblock %}
