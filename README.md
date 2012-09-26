@@ -59,3 +59,7 @@ The default datastore is located in a temporary folder, that once in a while and
 ```
 
 You would obviously want to change the path of the `--datastore_path` parameter. The --use_sqlite flag, makes it use sqlite instead of the default mysql, which removes the mysql dependency and makes the application start up faster. It might make the application perform slightly worse, but it should not be a concern when running it for testing purposes.
+
+## Licence
+
+Copyright &copy; 2012 Version.is | Code licensed under the [MIT License](http://opensource.org/licenses/MIT/).
