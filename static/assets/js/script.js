@@ -10,7 +10,6 @@ submitHandler = function (e) {
 document.getElementById('searchForm').addEventListener("submit", submitHandler);
 
 if (!hasDatalist()) {
-  content = 'Refer to the <a href="/projects">list of monitored projects</a> '
-          + 'for a the project names.'
+  content = 'Refer to the <a href="/projects">list of monitored projects</a> for a the project names.';
   document.getElementById('searchTip').innerHTML = content;
 }
