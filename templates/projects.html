@@ -1,12 +1,13 @@
 {% extends "_base.html" %}
 
 {% block content %}
+
 <header class="header-main">
-  <h1 class="page-header-title logo-color"><a href="/">version.is</a></h1>
-  <h2 class="page-header-subtitle">| currently monitoring the following projects</h2>
+  <h1 class="logo logo-color"><a href="/">version.is</a></h1>
+  <h2 class="logo header-subtitle">| currently monitoring the following projects</h2>
 </header>
 
-<section id="content" class="section">
+<section id="content">
   <ul>
     {% if projects %}
     {% for prettyname, project in projects %}

@@ -4,14 +4,14 @@
     <a href="https://github.com/gustavnikolaj/version.is/"><img class="github-ribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
     <header class="header-main">
-      <h1 class="page-header-title"><a href="/" title="">version.is</a></h1>
-      <h2 class="page-header-subtitle">| An API for getting the latest version of Open Source projects</h2>
+      <h1 class="logo logo-color"><a href="/">version.is</a></h1>
+      <h2 class="logo header-subtitle">| An API for getting the latest version of Open Source projects</h2>
     </header><!--/ page-header  -->
 
-    <section id="search" class="section widget-search">
+    <section id="search" class="search">
 
       <form id="searchForm">
-        <input type="text" list="projects" class="input-wide" id="searchInput" placeholder="Enter the projects name&#8230;">
+        <input type="text" list="projects" class="search-datalist" id="searchInput" placeholder="Enter the projects name&#8230;">
         <input id="searchSubmit" class="hidden" type="submit" value="Search">
         <datalist id="projects">
           {% if projects %}
@@ -24,7 +24,7 @@
       <small id="searchTip">Press arrow down in the input field above to get a list of project names or type the first few letters to get suggestions.</small>
     </section><!--/ section widget-search  -->
 
-    <section class="section">
+    <section>
 
 
       <!--<p>If you are in a browser that do not support the <a href="http://caniuse.com/datalist">datalist attribute</a> please refer to the <a href="/projects">list of monitored projects</a>.</p>-->
@@ -35,40 +35,40 @@
 
     </section><!--/ section widget-search  -->
 
-    <section id="content" class="section">
+    <section id="content">
 
     <h3 class="delta section-title">API Usage</h3>
 
-        <p class="pre-pre">
+        <p>
           Get the version of a single project:
         </p>
 
         <pre>http://version.is/&lt;project_name&gt;</pre>
 
-        <p class="pre-pre">
+        <p>
           Get a list of all projects monitored:<br>
         </p>
         <pre>http://version.is/projects</pre>
 
-        <p class="pre-pre">
+        <p>
           The response can be delivered in 3 different formats; text/html, text/plain, application/json. You can specify the format using the querystring like this:
         </p>
         <pre>http://version.is/<project_name>?format=&lt;html|plain|json&gt;
 http://version.is/projects?format=&lt;html|plain|json&gt;</pre>
 
-        <p class="pre-pre">
+        <p>
           Another way to specify the format, is using HTTP-Accept Headers. Consider the below example of fetching current jquery version in json format with curl in a terminal.<br>(Note that formats defined in the querystring overrules the HTTP-Accept header. For json requested with HTTP-accept header, you still need to use the querystring for a JSONP-callback, as described below.)
         </p>
         <pre>curl -i -H "Accept: application/json" "http://version.is/jquery"</pre>
 
-        <p class="pre-pre">
+        <p>
           If you request the json format, you can specify a callback for JSONP, like this:
         </p>
         <pre>http://version.is/&lt;project_name&gt;?format=json&amp;callback=&lt;callbackFunctionName&gt;</pre>
 
     </section><!--/ section  -->
 
-    <section class="section">
+    <section>
       <h3 class="delta section-title">Contributors</h3>
       <p>
         Original idea by <a href="https://github.com/higgo/">David Higgins</a> posted as a <a href="https://github.com/h5bp/lazyweb-requests/issues/96/">lazyweb-request</a>.<br>
