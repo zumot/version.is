@@ -2,12 +2,12 @@
 
 {% block content %}
 <header class="header-main">
-  <h2 class="page-header-subtitle">{{ project }} </h2>
-  <h1 class="page-header-title logo-color">version.is</h1>
-  <h2 class="page-header-subtitle">| {{ version }}</h2>
+  <h2 class="logo header-subtitle">{{ project }} </h2>
+  <h1 class="logo logo-color">version.is</h1>
+  <h2 class="logo header-subtitle">| {{ version }}</h2>
 </header>
 
-<section class="section">
+<section>
 {% if meta.website %}
   <p><a href="{{ meta.website }}">Project Website</a></p>
 {% endif %}
@@ -15,6 +15,7 @@
   <p>Release date: {{ date }}</p>
 {% endif %}
 </section>
+
     <footer class="footer-main">
       <p>Copyright &copy; 2012 Version.is | Code licensed under the <a href="http://opensource.org/licenses/MIT/" title="">MIT License</a>.</p>
     </footer><!--  footer-main  -->
