@@ -1,7 +1,7 @@
 {% extends "_base.html" %}
 
 {% block content %}
-  <h1 class="giga">Error 404</h1>
+  <h1 class="giga">Error <span class="logo-color">404</span></h1>
   <section id="content">
   <p>
     {{ message }}
@@ -17,8 +17,15 @@
   <p>If you have any issues with Version.is, log an issues or pull request on our <a href="https://github.com/gustavnikolaj/version.is/issues" title="Version.is issue tracker"><code>GitHub repository</code></a>.</p>
   </section>
 
-    <footer class="footer-main">
-      <p>Copyright &copy; 2012 Version.is | Code licensed under the <a href="http://opensource.org/licenses/MIT/" title="">MIT License</a>.</p>
-    </footer><!--  footer-main  -->
+
+{% endblock %}
+
+{% block javascript-section %}
+
+{% comment %}
+  Javascript that is only required in this section/template.
+{% endcomment %}
+
+  <!--  JavaScript Footer Section  -->
 
 {% endblock %}

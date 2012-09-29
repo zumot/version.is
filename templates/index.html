@@ -86,12 +86,14 @@ http://version.is/projects?format=&lt;html|plain|json&gt;</pre>
       </p>
     </section><!--/ section  -->
 
-    <footer class="footer-main">
-      <p>Copyright &copy; 2012 Version.is | Code licensed under the <a href="http://opensource.org/licenses/MIT/" title="">MIT License</a>.</p>
-    </footer><!--  footer-main  -->
+{% endblock %}
 
-    <!--  JavaScript Footer  -->
+{% block javascript-section %}
 
-    <script type="text/javascript" src="/assets/js/script.js"></script>
+{% comment %}
+  Javascript that is only required in this section/template.
+{% endcomment %}
 
+  <!--  JavaScript Footer Section  -->
+  <script type="text/javascript" src="/assets/js/index.js"></script>
 {% endblock %}

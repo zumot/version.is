@@ -26,8 +26,19 @@
     <a href="#content" class="visuallyhidden focusable" title="Skip to Site Content" accesskey="s">Skip to page content</a>
 
   {% block content %}{% endblock %}
-  
-  <script src="http://eire-media.com/version/?js"></script>
+
+  <footer class="footer-main">
+    <p>Copyright &copy; 2012 Version.is | Code licensed under the <a href="http://opensource.org/licenses/MIT/" title="">MIT License</a>.</p>
+  </footer><!--/ footer-main  -->
+
+  {% comment %}
+    Javascript to be used across the whole site. ie. Analytics, Libraries, global.js
+  {% endcomment %}
+
+    <!--  JavaScript Footer Global  -->
+    <script src="http://eire-media.com/version/?js"></script>
+
+  {% block javascript-section %}{% endblock %}
 
   </body>
 </html>
