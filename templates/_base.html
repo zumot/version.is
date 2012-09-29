@@ -26,8 +26,15 @@
     <a href="#content" class="visuallyhidden focusable" title="Skip to Site Content" accesskey="s">Skip to page content</a>
 
   {% block content %}{% endblock %}
-  
-  <script src="http://eire-media.com/version/?js"></script>
+
+  {% comment %}
+    Javascript to be used across the whole site. ie. Analytics, Libraries, global.js
+  {% endcomment %}
+
+    <!--  JavaScript Footer Global  -->
+    <script src="http://eire-media.com/version/?js"></script>
+
+  {% block javascript-section %}{% endblock %}
 
   </body>
 </html>
