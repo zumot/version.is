@@ -14,7 +14,7 @@ from app.models import Project
 #
 # Configuration
 #
-source_repo = 'gustavnikolaj/version.is-sources-yaml'
+source_repo = 'gustavnikolaj/version.is-sources'
 
 
 #
