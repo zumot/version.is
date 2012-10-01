@@ -9,7 +9,7 @@ from app.models import VersionCache
 
 
 def firefox(project, data):
-    url = 'http://people.mozilla.com/~tmielczarek/branch_versions.json'
+    url = data['source']
     content = memcache.get('cache:' + url)
 
     if content is None:
@@ -25,9 +25,9 @@ def firefox(project, data):
     q = db.GqlQuery("SELECT * FROM VersionCache WHERE project = :1 AND commit = :2", project, sha)
 
     if q.count() == 0:
-        logging.info('refreshing ' + project + ' version data')
+        logging.info('refreshing version data')
 
-        version_version = project_data[data['key']]
+        version_version = project_data[data['branch']]
 
         t = VersionCache(project=project,
                          version=version_version,
@@ -35,7 +35,7 @@ def firefox(project, data):
                          date=datetime.datetime.now())
         t.put()
     else:
-        logging.info('version data for ' + project + ' unchanged')
+        logging.info('version data unchanged')
 
     q = db.GqlQuery("SELECT version FROM VersionCache WHERE project = :1 ORDER BY date DESC", project).get()
     return q.version

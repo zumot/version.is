@@ -8,7 +8,7 @@ from app.models import VersionCache
 
 
 def byjsonfile(project, data):
-    repo = data['source']
+    repo = data['repo']
     filename = data['file']
 
     url = 'https://api.github.com/repos/' + repo + '/contents/' + filename
@@ -18,7 +18,7 @@ def byjsonfile(project, data):
     q = db.GqlQuery("SELECT * FROM VersionCache WHERE project = :1 AND commit = :2", project, sha)
 
     if q.count() == 0:
-        logging.info('refreshing ' + project + ' version data')
+        logging.info('refreshing version data')
         version_version = json.loads(base64.b64decode(project_data['content']))['version']
 
         t = VersionCache(project=project,
@@ -27,7 +27,7 @@ def byjsonfile(project, data):
                          date=datetime.datetime.now())
         t.put()
     else:
-        logging.info('version data for ' + project + ' unchanged')
+        logging.info('version data unchanged')
 
     q = db.GqlQuery("SELECT version FROM VersionCache WHERE project = :1 ORDER BY date DESC", project).get()
     return q.version

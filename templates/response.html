@@ -2,15 +2,16 @@
 
 {% block content %}
 <header class="header-main">
-  <h2 class="logo header-subtitle">{{ project }} </h2>
-  <h1 class="logo logo-color">version.is</h1>
-  <h2 class="logo header-subtitle">| {{ version }}</h2>
+  <h2 class="page-header-subtitle">{{ project }} </h2>
+  <h1 class="page-header-title logo-color"><a href="/">version.is</a></h1>
+  <h2 class="page-header-subtitle"> {{ version }}</h2>
 </header>
 
-<section>
-{% if meta.website %}
-  <p><a href="{{ meta.website }}">Project Website</a></p>
+<section class="section">
+{% if website %}
+  <p><a href="{{ website }}">Project Website</a></p>
 {% endif %}
+
 {% if handler == 'bytags' %}
   <p>Release date: {{ date }}</p>
 {% endif %}
