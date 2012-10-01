@@ -31,8 +31,8 @@ def projectsListDetailed():
     for project in ps:
         p = Project.all().filter('project = ', project).get()
         data = json.loads(p.data)
-        if data['meta']['prettyname']:
-            prettyname = data['meta']['prettyname']
+        if data['prettyname']:
+            prettyname = data['prettyname']
         else:
             prettyname = project
 

@@ -55,15 +55,16 @@ def projectHtml(project):
     if version:
         version = getVersionDetailed(project)
         status = 200
-        if version[1]['meta']['prettyname']:
-            project = version[1]['meta']['prettyname']
+        if version[1]['prettyname']:
+            project = version[1]['prettyname']
 
         template_data = {
             'title': project,
             'project': project,
             'version': version[0],
-            'meta': version[1]['meta'],
-            'handler': version[1]['handler']['handler'],
+            'prettyname': version[1]['prettyname'],
+            'website': version[1]['website'],
+            'handler': version[1]['handler'],
             'date': version[2].isoformat()
         }
         result = template.render('response', template_data)

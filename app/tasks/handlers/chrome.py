@@ -9,7 +9,7 @@ from app.models import VersionCache
 
 
 def chrome(project, data):
-    url = 'http://omahaproxy.appspot.com/all.json'
+    url = data['source']
     content = memcache.get('cache:' + url)
 
     if content is None:
@@ -24,7 +24,7 @@ def chrome(project, data):
     q = db.GqlQuery("SELECT * FROM VersionCache WHERE project = :1 AND commit = :2", project, sha)
 
     if q.count() == 0:
-        logging.info('refreshing ' + project + ' version data')
+        logging.info(project + ': refreshing version data')
 
         for os in project_data:
             if os['os'] == data['os']:
@@ -41,7 +41,7 @@ def chrome(project, data):
                          date=version_date)
         t.put()
     else:
-        logging.info('version data for ' + project + ' unchanged')
+        logging.info(project + ': version data for unchanged')
 
     q = db.GqlQuery("SELECT version FROM VersionCache WHERE project = :1 ORDER BY date DESC", project).get()
     return q.version
