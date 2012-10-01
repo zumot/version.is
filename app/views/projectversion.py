@@ -37,7 +37,9 @@ def getVersion(project):
         if q.count() == 0:
             return False
         else:
-            return q.get().version
+            v = q.get().version
+            memcache.set('version:' + project, v)
+            return v
     else:
         return v
 
