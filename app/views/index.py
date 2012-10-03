@@ -1,9 +1,7 @@
-import json
-
 from google.appengine.ext import webapp
-from app.helpers import format, template
+from app.helpers import format, template, jsonOutput
 
-from app.views.projects import projectsListDetailed
+from app.helpers.getprojectslist import getProjectsListDetailed
 
 
 class Index(webapp.RequestHandler):
@@ -31,7 +29,7 @@ def gimmeIndex(response_format, callback):
 
 
 def indexHtml():
-    template_data = {'projects': projectsListDetailed()}
+    template_data = {'projects': getProjectsListDetailed()}
     return (template.render('index', template_data), 200)
 
 
@@ -40,12 +38,6 @@ def indexPlain():
 
 
 def indexJson(callback):
-    content = {'message': 'Invalid Request'}
-
-    if callback != '':
-        content = json.dumps(content, separators=(',', ':'))
-        content = callback + '(' + content + ');'
-    else:
-        content = json.dumps(content, indent=2)
+    content = jsonOutput({'message': 'Invalid Request'}, callback)
 
     return (content, 400)

@@ -1,9 +1,7 @@
-from google.appengine.api import memcache
 from google.appengine.ext import webapp
-from app.helpers import format, template
-from google.appengine.ext import db
-import json
-from app.models import Project
+
+from app.helpers import format, template, jsonOutput
+from app.helpers import getVersion, getVersionDetailed
 
 
 class ProjectVersion(webapp.RequestHandler):
@@ -30,27 +28,6 @@ def gimmeProject(project, response_format, callback):
         return projectJson(project, callback)
 
 
-def getVersion(project):
-    v = memcache.get('version:' + project)
-    if not v:
-        q = db.GqlQuery("SELECT * FROM VersionCache WHERE project = :1 ORDER BY date DESC", project)
-        if q.count() == 0:
-            return False
-        else:
-            v = q.get().version
-            memcache.set('version:' + project, v)
-            return v
-    else:
-        return v
-
-
-def getVersionDetailed(project):
-    version = getVersion(project)
-    p = Project.all().filter('project = ', project).get()
-    d = db.GqlQuery("SELECT date FROM VersionCache WHERE project = :1 ORDER BY date DESC", project).get()
-    return (version, json.loads(p.data), d.date.date())
-
-
 def projectHtml(project):
     version = getVersion(project)
 
@@ -60,6 +37,10 @@ def projectHtml(project):
         if version[1]['prettyname']:
             project = version[1]['prettyname']
 
+        date = None
+        if version[2] != None:
+            date = version[2].isoformat()
+
         template_data = {
             'title': project,
             'project': project,
@@ -67,7 +48,7 @@ def projectHtml(project):
             'prettyname': version[1]['prettyname'],
             'website': version[1]['website'],
             'handler': version[1]['handler'],
-            'date': version[2].isoformat()
+            'date': date
         }
         result = template.render('response', template_data)
     else:
@@ -104,10 +85,6 @@ def projectJson(project, callback):
         status = 404
         content = {'error': 'No data for ' + project}
 
-    if callback != '':
-        content = json.dumps(content, separators=(',', ':'))
-        content = callback + '(' + content + ');'
-    else:
-        content = json.dumps(content, indent=2)
+    content = jsonOutput(content, callback)
 
     return (content, status)
