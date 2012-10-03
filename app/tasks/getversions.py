@@ -120,7 +120,8 @@ def projectGet(p, d, filename, refresh):
     if h[0]:
         version = h[1](p, handlerargs)
         logging.info('current version: ' + version)
-        memcache.set('version:' + p, version)
+        # Cache version for an hour
+        memcache.set('version:' + p, version, 3600)
     else:
         logging.error('invalid Handler!')
 
