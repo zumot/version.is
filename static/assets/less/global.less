@@ -150,19 +150,33 @@ section {
 }
 
 //
-//  Remove text-shadow in selection highlight: h5bp.com/i
-//  These selection declarations have to be separate.
-//  Customize the background color to match your design.
+//  1.  Remove text-shadow in selection highlight: h5bp.com/i
+//       These selection declarations have to be separate.
+//       Customize the background color to match your design.
 //
 
 ::-moz-selection {
   background: @contrast;
-  text-shadow: none;
+  color: #fff;
+  text-shadow: none;  //  1.
+}
+
+a::-moz-selection {
+ background: @body;
 }
 
 ::selection {
   background: @contrast;
-  text-shadow: none;
+  color: #fff;
+  text-shadow: none;  //  1.
+}
+
+a::selection {
+ background: @body;
+}
+
+option[selected="selected"] {
+  font-weight: bold;
 }
 
 //
