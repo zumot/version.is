@@ -6,9 +6,12 @@ from app.helpers import getVersion, getVersionDetailed
 
 class ProjectVersion(webapp.RequestHandler):
     def get(self, project):
-        response_format = format.get(self.request.get('format'), self.request.headers['accept'])
+        get_format = self.request.get('format')
+        accept_header = self.request.headers['accept']
+        response_format = format.get(get_format, accept_header)
 
-        response = gimmeProject(project, response_format, self.request.get('callback'))
+        get_callback = self.request.get('callback')
+        response = gimmeProject(project, response_format, get_callback)
 
         self.response.status = response[1]
         self.response.headers['Charset'] = 'utf-8'
@@ -88,3 +91,4 @@ def projectJson(project, callback):
     content = jsonOutput(content, callback)
 
     return (content, status)
+
