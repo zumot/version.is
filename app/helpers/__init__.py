@@ -1,3 +1,4 @@
 from getversion import getVersion
 from getversiondetailed import getVersionDetailed
 from jsonoutput import jsonOutput
+from formatrequest import getFormatFromRequest

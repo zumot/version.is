@@ -2,15 +2,22 @@ from google.appengine.ext import webapp
 
 from app.helpers import format, template, jsonOutput
 from app.helpers import getVersion, getVersionDetailed
+from app.helpers import getFormatFromRequest
 
 
 class ProjectVersion(webapp.RequestHandler):
     def get(self, project):
         project = project.lower()  # Convert project name to lowercase
 
-        get_format = self.request.get('format')
-        accept_header = self.request.headers['accept']
-        response_format = format.get(get_format, accept_header)
+        request_format = getFormatFromRequest(project)
+
+        if request_format[1] == None:
+            get_format = self.request.get('format')
+            accept_header = self.request.headers['accept']
+            response_format = format.get(get_format, accept_header)
+        else:
+            project = request_format[0]
+            response_format = request_format[1]
 
         get_callback = self.request.get('callback')
         response = gimmeProject(project, response_format, get_callback)
