@@ -6,6 +6,8 @@ from app.helpers import getVersion, getVersionDetailed
 
 class ProjectVersion(webapp.RequestHandler):
     def get(self, project):
+        project = project.lower()  # Convert project name to lowercase
+
         get_format = self.request.get('format')
         accept_header = self.request.headers['accept']
         response_format = format.get(get_format, accept_header)
