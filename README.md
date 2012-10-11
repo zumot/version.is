@@ -26,7 +26,7 @@ Get the version of a single project:
 GET http://version.is/<project_name>
 ```
 
-The response can be delivered in 3 different formats; text/html, text/plain, application/json. You can specify the format using the querystring like this:
+The response can be delivered in 3 different formats; text/html, text/plain, application/json. You can specify the format like this:
 ```
 GET http://version.is/projects?format=<html|plain|json>
 GET http://version.is/<project_name>?format=<html|plain|json>
@@ -38,10 +38,16 @@ curl -i -H "Accept: application/json" "http://version.is/jquery"
 ```
 Note that formats defined in the querystring overrules the HTTP-Accept header.
 
+You can also specify a format using a file extension. Note that this will override both querystring and HTTP-Accept header:
+```
+GET http://version.is/<project_name>.json
+GET http://version.is/<project_name>.txt
+```
 
 If you request the json format, you can specify a callback for JSONP, like this:
 ```
 GET http://version.is/<project_name>?format=json&callback=<callbackFunctionName>
+GET http://version.is/<project_name>.json?callback=<callbackFunctionName>
 ```
 
 ## Running it locally
