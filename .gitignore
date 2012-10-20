@@ -16,3 +16,7 @@ Thumbs.db
 # Local Datastore #
 ###################
 localdatastore
+
+# Vim swap #
+############
+*.swp
