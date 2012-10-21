@@ -10,8 +10,6 @@ from app.tasks.getversions import testHandler
 from app.helpers import template
 from app.helpers import ghAuth
 
-import logging
-
 
 """ API URL to pull requests for the project registry
 """
@@ -24,19 +22,24 @@ def pullRequestApiUrl():
 def parseYamlFile(url):
     response = []
     # Get yaml file
-    rawfile = urlfetch.fetch(ghAuth(url)).content
+    rawfile = urlfetch.fetch(url).content
     rawfile = yaml.load(rawfile)
     # Validate each yaml object
     for project in rawfile:
         data = defaultdict()
 
-        data['project'] = project
-        data['name'] = rawfile[project]['name']
-        data['website'] = rawfile[project]['website']
-        data['handler'] = rawfile[project]['handler']
-        data['handler_valid'] = testHandler(data['handler']['type'])[0]
+        try:
 
-        response.append(data)
+            data['project'] = project
+            data['name'] = rawfile[project]['name']
+            data['website'] = rawfile[project]['website']
+            data['handler'] = rawfile[project]['handler']
+            data['handler_valid'] = testHandler(data['handler']['type'])[0]
+
+            response.append(data)
+
+        except KeyError:
+            raise Exception('Invalid file: ' + url)
 
     return response
 
@@ -121,3 +124,4 @@ class ValidatePullReq(webapp.RequestHandler):
         rendered = template.render('validate_pullreq', template_data)
 
         self.response.write(rendered)  # Output the rendered data
+
