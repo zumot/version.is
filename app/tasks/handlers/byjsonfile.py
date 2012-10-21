@@ -5,13 +5,14 @@ import logging
 from google.appengine.ext import db
 from google.appengine.api import urlfetch
 from app.models import VersionCache
+from app.helpers import ghAuth
 
 
 def byjsonfile(project, data):
     repo = data['repo']
     filename = data['file']
 
-    url = 'https://api.github.com/repos/' + repo + '/contents/' + filename
+    url = ghAuth('https://api.github.com/repos/' + repo + '/contents/' + filename)
     project_data = json.loads(urlfetch.fetch(url).content)
 
     sha = project_data['sha']

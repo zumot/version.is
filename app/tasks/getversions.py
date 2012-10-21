@@ -11,6 +11,8 @@ from app.tasks import handlers
 from app.models import FileCache
 from app.models import Project
 
+from app.helpers import ghAuth
+
 #
 # Configuration
 #
@@ -21,7 +23,7 @@ source_repo = 'version-is/version.is-sources'
 # Paths
 #
 raw_path = 'https://raw.github.com/' + source_repo + '/master/'
-contents_path = 'https://api.github.com/repos/' + source_repo + '/contents'
+contents_path = ghAuth('https://api.github.com/repos/' + source_repo + '/contents')
 
 
 #

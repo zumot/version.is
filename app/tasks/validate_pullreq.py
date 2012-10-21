@@ -8,6 +8,7 @@ from google.appengine.api import urlfetch
 
 from app.tasks.getversions import testHandler
 from app.helpers import template
+from app.helpers import ghAuth
 
 import logging
 
@@ -15,7 +16,7 @@ import logging
 """ API URL to pull requests for the project registry
 """
 def pullRequestApiUrl():
-    return 'https://api.github.com/repos/version-is/version.is-sources/pulls'
+    return ghAuth('https://api.github.com/repos/version-is/version.is-sources/pulls')
 
 
 """ parse yaml file
@@ -23,7 +24,7 @@ def pullRequestApiUrl():
 def parseYamlFile(url):
     response = []
     # Get yaml file
-    rawfile = urlfetch.fetch(url).content
+    rawfile = urlfetch.fetch(ghAuth(url)).content
     rawfile = yaml.load(rawfile)
     # Validate each yaml object
     for project in rawfile:
@@ -45,7 +46,7 @@ def parseYamlFile(url):
 def parsePullRequest(url):
     response = []
     # Get the list of files added in the pull request
-    pullfiles = urlfetch.fetch(url + '/files')
+    pullfiles = urlfetch.fetch(ghAuth(url + '/files'))
     pullfiles = json.loads(pullfiles.content)
     for pullfile in pullfiles:
         pulldata = defaultdict()

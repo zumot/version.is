@@ -5,13 +5,14 @@ from google.appengine.api import urlfetch
 from google.appengine.ext import db
 from app.helpers import iso8601date
 from app.models import VersionCache
+from app.helpers import ghAuth
 
 
 def bytags(p, data):
     repo = data['repo']
 
     # Loading tags for current project
-    tags_url = 'https://api.github.com/repos/' + repo + '/tags'
+    tags_url = ghAuth('https://api.github.com/repos/' + repo + '/tags')
     tags = json.loads(urlfetch.fetch(tags_url).content)
 
     refresh = False
@@ -23,7 +24,7 @@ def bytags(p, data):
         q = db.GqlQuery(query, p, tag['commit']['sha'])
         if (q.count() == 0):
             refresh = True
-            commit_url = (
+            commit_url = ghAuth(
                 'https://api.github.com/repos/' + repo +
                 '/commits/' + tag['commit']['sha']
             )
