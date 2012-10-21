@@ -4,6 +4,12 @@ from app.helpers import format, template, jsonOutput
 from app.helpers import getVersion, getVersionDetailed
 from app.helpers import getFormatFromRequest
 
+import re
+
+
+def parseProjectName(project):
+    return re.sub(r'[^a-z]', '-', project) # Replace any non-letter-chars to dash
+
 
 class ProjectVersion(webapp.RequestHandler):
     def get(self, project):
@@ -18,6 +24,8 @@ class ProjectVersion(webapp.RequestHandler):
         else:
             project = request_format[0]
             response_format = request_format[1]
+
+        project = parseProjectName(project)
 
         get_callback = self.request.get('callback')
         response = gimmeProject(project, response_format, get_callback)
