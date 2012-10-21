@@ -34,4 +34,4 @@ Sindre Sorhus
 #  SITE
 
 Site Url: http://www.version.is/
-Git Repo: https://github.com/gustavnikolaj/version.is/
+Git Repo: https://github.com/version-is/version.is/

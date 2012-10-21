@@ -8,7 +8,7 @@ This is the result of a [lazyweb-request](https://github.com/h5bp/lazyweb-reques
 
 ## Data Source
 
-Data is pulled in from the [version.is-sources](https://github.com/gustavnikolaj/version.is-sources) repo. The readme contains additional information.
+Data is pulled in from the [version.is-sources](https://github.com/version-is/version.is-sources) repo. The readme contains additional information.
 
 ## Try it
 

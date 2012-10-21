@@ -1,4 +1,4 @@
-/*!  --  index.js  |  Version.is  | v. 0.0.0  |  https://github.com/gustavnikolaj/version.is  --  */
+/*!  --  index.js  |  Version.is  | v. 0.0.0  |  https://github.com/version-is/version.is  --  */
 
 hasDatalist = function () {
   return 'options' in document.createElement('datalist');
