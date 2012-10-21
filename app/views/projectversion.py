@@ -8,7 +8,7 @@ import re
 
 
 def parseProjectName(project):
-    return re.sub(r'[^a-z]', '-', project) # Replace any non-letter-chars to dash
+    return re.sub(r'[^a-z0-9]', '-', project) # Replace any non-letter-chars to dash
 
 
 class ProjectVersion(webapp.RequestHandler):
