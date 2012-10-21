@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-US"> <!--<![endif]-->
+
+  <head>
+
+    <meta name="description" content="Version.is: An API for getting the latest version of Open Source projects" />
+
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+    <link type="text/plain" rel="author" href="humans.txt" />
+
+    <title>{% if title %}{{ title }} | version.is{% else %}version.is{% endif %}</title>
+
+    <!--  CSS  -->
+    <!--[if ! lte IE 6]><!-->
+    <link rel="stylesheet" media="screen" href="/assets/css/global.css">
+    <!--<![endif]-->
+
+    <style>
+
+      p { padding: 0; }
+
+      dl {
+        overflow: auto;
+        margin: 1em 0;
+        padding: 0;
+      }
+  
+      dt {
+        clear: left;
+        float: left;
+        width: 23%;
+        margin: 0;
+        padding: 5px;
+        font-weight: bold;
+      }
+        
+      dd {
+        margin: 0 0 0 25%;
+        padding: 5px;
+      }
+
+
+      .box { 
+        font-weight: bold;
+        padding: 0.5em 1em;
+        border: 1px solid #000;
+      }
+
+      .warning { color: #ffa700; }
+      .box.warning { background: #fff3de; border-color: #ffa700; }
+
+      .error { color: red; }
+      .box.error { background: #fee; border-color: red; }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <a href="#content" class="visuallyhidden focusable" title="Skip to Site Content" accesskey="s">Skip to page content</a>
+
+  <header class="header-main">
+    <h1 class="logo logo-color"><a href="/">version.is</a></h1>
+    <h2 class="logo header-subtitle">| pending pull requests</h2>
+  </header>
+
+  <section id="content">
+  {% if pullreqs %}
+    {% for d in pullreqs %}
+      <h3 class="delta section-title">Pull request <a href="{{ d.link }}">#{{ d.number }}</a></h3>
+        {% if d.file_count_warning %}
+        <p class="box warning">More than one file is changed in this pull request!</p>
+        {% endif %}
+
+        {% for f in d.files %}
+          <h4><a href="{{f.blob_url}}">{{f.filename}}:</a>{% if not f.valid %} <span class="error">THIS IS NOT A YAML FILE!</span>{% endif %}</h4>
+          {% for x in f.data %}
+            <dl>
+              <dt>Project identifier:</dt>
+              <dd>{{x.project}}</dd>
+              <dt>Name:</dt>
+              <dd>{{x.name}}</dd>
+              <dt>Website:</dt>
+              <dd><a href="{{x.website}}">{{x.website}}</a></dd>
+              <dt>Handler:</dt>
+              <dd><span class="{% if not x.handler_valid %}error{% endif %}">
+                {{ x.handler.type }}
+              </span></dd>
+              {% for key, value in x.handler.items %}
+                {% if key != 'type' %}
+                  <dt>Handler {{ key|capfirst }}</dt>
+                  {% if key == 'repo' %}
+                    <dd><a href="http://github.com/{{value}}">{{ value }}</a></dd>
+                  {% else %}
+                    <dd>{{ value }}</dd>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </dl>
+            <div class="cf"></div>
+          {% endfor %}
+        {% endfor %}
+    {% endfor %}
+  {% else %}
+    <h3 class="delta section-title">Wooo!</h3>
+    <p>No pending pull requests.</p>
+  {% endif %}
+  </section>
+
+  <footer class="footer-main">
+    <p>Copyright &copy; 2012 Version.is | Code licensed under the <a href="http://opensource.org/licenses/MIT/" title="">MIT License</a>.</p>
+  </footer><!--/ footer-main  -->
+
+  </body>
+</html>
