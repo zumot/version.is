@@ -23,7 +23,7 @@ West Midlands, England
 #  THANKS
 
 David Higgins - Initial idea
-Nico Akunz - Sponsoring domain
+Nico Kunz - Sponsoring domain
 Nihad Abbasov
 Luit van Drongelen
 Paul Irish
